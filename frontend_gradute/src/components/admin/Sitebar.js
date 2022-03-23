@@ -61,7 +61,7 @@ export default function Sidebar() {
                                         </a>
                                     </li>
                                     <li className="">
-                                        <a href="../backend/page-add-category.html">
+                                        <a href="/admin/categoryFoodAdd">
                                             <i className="las la-minus"></i><span>Thêm thể loại</span>
                                         </a>
                                     </li>

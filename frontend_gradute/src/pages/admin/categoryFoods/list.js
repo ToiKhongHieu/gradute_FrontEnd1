@@ -28,9 +28,9 @@ export default function ListCategoryFoods(props) {
                             <div className="d-flex flex-wrap align-items-center justify-content-between mb-4">
                                 <div>
                                     <h4 className="mb-3">Danh sách thể loại</h4>
-                                    <p class="mb-0">Tuấn tường óc chó </p>
+                                    <p class="mb-0">Xem danh sách thể loại món tại đây</p>
                                 </div>
-                                <a href="page-add-category.html" className="btn btn-primary add-list"><i
+                                <a href="/admin/categoryFoodAdd" className="btn btn-primary add-list"><i
                                     className="las la-plus mr-3"></i>Thêm thể loại</a>
                             </div>
                         </div>

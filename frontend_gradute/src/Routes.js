@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import AdminLayout from "./layouts/AdminLayout";
+import AddCategoryFood from "./pages/admin/categoryFoods/Add";
 import ListCategoryFoods from "./pages/admin/categoryFoods/list";
 
 export default function Routes(props) {
@@ -8,11 +9,15 @@ export default function Routes(props) {
             <Switch>
                 <AdminLayout path="/admin">
                     <Switch>
-                        <Route exact path="/admin/categoryFoods">
+                        <Route  path="/admin/categoryFoods">
                             <ListCategoryFoods {...props} />
+                        </Route>
+                        <Route  path="/admin/categoryFoodAdd">
+                            <AddCategoryFood {...props} />
                         </Route>
                     </Switch>
                 </AdminLayout>
+
             </Switch>
         </BrowserRouter>
     )
