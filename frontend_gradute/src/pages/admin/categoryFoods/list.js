@@ -50,6 +50,7 @@ export default function ListCategoryFoods(props) {
                                             <th>Mô tả</th>
                                             <th>Ngày tạo</th>
                                             <th>Ngày sửa</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody className="ligth-body">
