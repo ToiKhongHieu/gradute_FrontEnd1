@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAllCategoryProduct } from "../../../api/CategoryFoodsAPI";
+import { getAllCategoryProduct, removeCate } from "../../../api/CategoryFoodsAPI";
 
 
 export default function ListCategoryFoods(props) {
     const [categories, setCategories] = useState([]);
-
     useEffect(() => {
         const getCategory = async () => {
             try {
@@ -19,6 +18,19 @@ export default function ListCategoryFoods(props) {
         getCategory();
     }, []);
 
+    const onRemoveCate = async (id) => {
+        const check = window.confirm('Bạn có chắc muốn xóa thể loại #' + id + " ?");
+        if(check){
+            try {
+                await removeCate(id);
+                const newProducts = categories.filter((item) => item.id !== id);
+                setCategories(newProducts);
+              } catch (error) {
+                console.log(error);
+              }
+              alert("Đã xóa thể loại #" + id);
+        }
+    }
     return (
         <>
             <div className="content-page">
@@ -66,13 +78,13 @@ export default function ListCategoryFoods(props) {
                                                     <td className="text-right">
                                                         <Link
                                                             className="btn btn-primary btn-sm ms-1"
-                                                            to={`/admin/category/${item.id}/edit`}
+                                                            to={`/admin/CategoryFoodEdit/${item.id}`}
                                                         >
                                                             Edit
                                                         </Link>
                                                         <button
                                                             className="btn btn-danger btn-sm ms-1"
-                                                            // onClick={() => onRemoveCate(item.id)}
+                                                            onClick={() => onRemoveCate(item.id)}
                                                         >
                                                             Delete
                                                         </button>
