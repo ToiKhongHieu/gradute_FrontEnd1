@@ -12,7 +12,7 @@ export default function Routess(props) {
                     <Route exact path="/admin/categoryFoods" element={<ListCategoryFoods {...props} />}/>
                     <Route exact path="/admin/categoryFoodAdd" element={<AddCategoryFood {...props} />} />
                     <Route exact path="/admin/CategoryFoodEdit/:id" element={<AddCategoryFood {...props} />} />
-                    <Route exact path="/admin" element={<Dashboard {...props} />} />
+                    <Route exact path="/" element={<Dashboard {...props} />} />
                 </Routes>
             </AdminLayout>
         </BrowserRouter>
