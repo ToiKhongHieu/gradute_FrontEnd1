@@ -6,11 +6,12 @@ const AddCategoryFood = (props) => {
     const changeMultipart = () => {
         setInputMultipart(!inputMultipart);
     }
+    const [createdAt , setcreatedAt] = useState();
     const [btnTile,setBtnTile] = useState("Thêm thể loại");
     const {id} = useParams();
     const [image, setImage] = useState("");
     const [name, setName] = useState("");
-    const [status, setStatus] = useState("sẵn sàng");
+    const [status, setStatus] = useState("Sẵn sàng");
     const [description, setDescription] = useState("");
     useEffect(() => {
         const getCategory = async () => {
@@ -18,6 +19,7 @@ const AddCategoryFood = (props) => {
                 if(id){
                     const { data } = await getOneCategory(id);
                     setBtnTile("Sửa thể loại");
+                    setcreatedAt(data.createdAt);
                     setImage(data.image);
                     setName(data.name);
                     setStatus(data.status);
@@ -37,6 +39,7 @@ const AddCategoryFood = (props) => {
         setName(e.target.value);
     }
     const getStatus = (e) => {
+        console.log(e.target.value);
         setStatus(e.target.value);
     }
     const getDescription = (e) => {
@@ -44,7 +47,7 @@ const AddCategoryFood = (props) => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const data1 = { id ,image , name , status , description};
+        const data1 = { id ,image , name , status , description , createdAt};
         const {data} = await AddCategory(data1);
         if(id){
             alert("Sửa thành công thể loại #" + data.id);
@@ -65,9 +68,8 @@ const AddCategoryFood = (props) => {
                 <div className="col-md-12">
                     <div className="form-group">
                         <label>Chọn Ảnh</label>
-                        <input type="file" className="form-control image-file" name="image" id="image" pattern={image}
+                        <input type="file" className="form-control image-file" name="image" id="image"
                             accept="../image/*"
-                            onChange={getImage}
                             required />
                         <a className="text-info" onClick={() => changeMultipart()}>hoặc thêm link ảnh</a>
                     </div>
@@ -114,9 +116,9 @@ const AddCategoryFood = (props) => {
                                             <div className="col-md-12 mt-3" >
                                                 <div className="form-group">
                                                     <label>Trạng thái</label>
-                                                    <select name="status" className="selectpicker form-control" onChange={getStatus} data-style="py-0">
+                                                    <select name="status" className="form-control" onChange={getStatus} value={status}>
                                                         <option className="text-success" value="Sẵn sàng">Sẵn sàng</option>
-                                                        <option className="text-secondary" value="Ẩn">Ẩn</option>
+                                                        <option className="text-secondary" value="Ẩn" >Ẩn</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -127,7 +129,7 @@ const AddCategoryFood = (props) => {
                                             </div>
                                         </div>
                                         <button  type="submit" className="btn btn-primary mr-2">{btnTile}</button>
-                                        <button type="reset" className="btn btn-danger">Cài lại</button>
+                                        <button type="reset" onClick={clearForm} className="btn btn-danger">Cài lại</button>
                                     </form>
                                 </div>
                             </div>
