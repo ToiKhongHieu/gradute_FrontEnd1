@@ -15,7 +15,7 @@ export default function AdminLayout(props) {
             <div class="wrapper">
                 <Sidebar />
                 <Navbar />
-                    {props.children}
+                {props.children}
             </div>
             <Footer />
         </>
