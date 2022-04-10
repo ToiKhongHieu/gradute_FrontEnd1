@@ -49,7 +49,7 @@ export default function Sidebar() {
                                     <svg class="svg-icon" id="p-dash3" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                                     </svg>
-                                    <span className="ml-4">Thể loại</span>
+                                    <span className="ml-4">loại món</span>
                                     <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                                     </svg>
@@ -57,12 +57,12 @@ export default function Sidebar() {
                                 <ul id="category" className="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                                     <li className="">
                                         <a href="/admin/categoryFoods">
-                                            <i className="las la-minus" ></i><span>Danh sách thể loại</span>
+                                            <i className="las la-minus" ></i><span>Danh sách loại món</span>
                                         </a>
                                     </li>
                                     <li className="">
                                         <a href="/admin/categoryFoodAdd">
-                                            <i className="las la-minus"></i><span>Thêm thể loại</span>
+                                            <i className="las la-minus"></i><span>Thêm loại món</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -72,20 +72,20 @@ export default function Sidebar() {
                                     <svg class="svg-icon" id="p-dash4" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path>
                                     </svg>
-                                    <span className="ml-4">Khuyến mãi</span>
+                                    <span className="ml-4">loại bàn</span>
                                     <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                                     </svg>
                                 </a>
                                 <ul id="sale" className="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                                     <li className="">
-                                        <a href="../backend/page-list-sale.html">
-                                            <i className="las la-minus"></i><span>Danh sách khuyến mãi</span>
+                                        <a href="/admin/categorytable">
+                                            <i className="las la-minus"></i><span>Danh sách loại bàn</span>
                                         </a>
                                     </li>
                                     <li className="">
-                                        <a href="../backend/page-add-sale.html">
-                                            <i className="las la-minus"></i><span>Thêm khuyến mãi</span>
+                                        <a href="/admin/categorytableadd">
+                                            <i className="las la-minus"></i><span>Thêm loại bàn</span>
                                         </a>
                                     </li>
                                 </ul>

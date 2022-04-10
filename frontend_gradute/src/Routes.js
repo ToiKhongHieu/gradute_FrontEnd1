@@ -5,6 +5,8 @@ import ListCategoryFoods from "./pages/admin/categoryFoods/list";
 import ListAllUsers from "./pages/admin/listUsers/list";
 import ListAllTables from "./pages/admin/listTables/list";
 import Dashboard from "./pages/admin/Dashboard";
+import ListCategoryTable from "./pages/admin/CategoryTable/list";
+import AddCategoryTable from "./pages/admin/CategoryTable/Add";
 
 export default function Routess(props) {
     return (
@@ -12,11 +14,13 @@ export default function Routess(props) {
             <AdminLayout>
                 <Routes>
                     <Route exact path="/admin/categoryFoods" element={<ListCategoryFoods {...props} />}/>
+                    <Route exact path="/admin/categorytable" element={<ListCategoryTable {...props} />}/>
                     <Route exact path="/admin/categoryFoodAdd" element={<AddCategoryFood {...props} />} />
+                    <Route exact path="/admin/categorytableadd" element={<AddCategoryTable {...props} />} />
                     <Route exact path="/admin/CategoryFoodEdit/:id" element={<AddCategoryFood {...props} />} />
                     <Route  exact path="/admin/ListUsers" element={<ListAllUsers {...props} />} />
                     <Route  path="/admin/ListTables" element={<ListAllTables {...props} />}/>
-                    <Route exact path="/" element={<Dashboard {...props} />} />
+                    <Route exact path="/" element={<Dashboard {...props} />} />categorytableadd
                 </Routes>
             </AdminLayout>
         </BrowserRouter>

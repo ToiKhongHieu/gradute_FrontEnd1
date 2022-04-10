@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAllCategoryFood , removeCategoryFood } from "../../../api/CategoryFoodsAPI";
+import { getAllCategoryTable, removeCategoryTable } from "../../../api/CategoryTableAPI";
 
 
-export default function ListCategoryFoods(props) {
+export default function ListCategoryTable(props) {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
         const getCategory = async () => {
             try {
-                const { data } = await getAllCategoryFood();
+                const { data } = await getAllCategoryTable();
                 setCategories(data);
-                console.log(data);
             } catch (error) {
                 console.log("Error getCategories " + error);
             }
@@ -22,7 +21,7 @@ export default function ListCategoryFoods(props) {
         const check = window.confirm('Bạn có chắc muốn xóa thể loại #' + id + " ?");
         if(check){
             try {
-                await removeCategoryFood(id);
+                await removeCategoryTable(id);
                 const newProducts = categories.filter((item) => item.id !== id);
                 setCategories(newProducts);
               } catch (error) {
@@ -39,11 +38,11 @@ export default function ListCategoryFoods(props) {
                         <div className="col-lg-12">
                             <div className="d-flex flex-wrap align-items-center justify-content-between mb-4">
                                 <div>
-                                    <h4 className="mb-3">Danh sách thể loại món</h4>
-                                    <p class="mb-0">Xem danh sách thể loại món tại đây</p>
+                                    <h4 className="mb-3">Danh sách thể loại bàn</h4>
+                                    <p class="mb-0">Xem danh sách thể loại bàn tại đây</p>
                                 </div>
-                                <a href="/admin/categoryFoodAdd" className="btn btn-primary add-list"><i
-                                    className="las la-plus mr-3"></i>Thêm thể loại món</a>
+                                <a href="/admin/categorytableadd" className="btn btn-primary add-list"><i
+                                    className="las la-plus mr-3"></i>Thêm thể loại bàn</a>
                             </div>
                         </div>
                         <div className="col-lg-12">
@@ -54,9 +53,7 @@ export default function ListCategoryFoods(props) {
                                             <th>
                                                 
                                             </th>
-                                            <th></th>
-                                            <th>Tên thể loại món</th>
-                                            <th>Trạng thái</th>
+                                            <th>Tên thể loại bàn</th>
                                             <th>Mô tả</th>
                                             <th>Ngày tạo</th>
                                             <th>Ngày sửa</th>
@@ -68,9 +65,7 @@ export default function ListCategoryFoods(props) {
                                             return (
                                                 <tr key={index}>
                                                     <td>{index + 1}</td>
-                                                    <td><img src={item.image} height="100"/></td>
-                                                    <td>{item.name}</td>
-                                                    <td>{item.status}</td>
+                                                    <td>{item.CategoryName}</td>
                                                     <td>{item.description}</td>
                                                     <td>{item.createdAt}</td>
                                                     <td>{item.updatedAt}</td>
