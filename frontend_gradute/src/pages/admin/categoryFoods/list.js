@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAllCategoryProduct, removeCate } from "../../../api/CategoryFoodsAPI";
+import { getAllCategoryFood, removeCate } from "../../../api/CategoryFoodsAPI";
 
 
 export default function ListCategoryFoods(props) {
@@ -8,7 +8,7 @@ export default function ListCategoryFoods(props) {
     useEffect(() => {
         const getCategory = async () => {
             try {
-                const { data } = await getAllCategoryProduct();
+                const { data } = await getAllCategoryFood();
                 setCategories(data);
                 console.log(data);
             } catch (error) {
@@ -52,11 +52,9 @@ export default function ListCategoryFoods(props) {
                                     <thead className="bg-white text-uppercase">
                                         <tr className="ligth ligth-data">
                                             <th>
-                                                <div className="checkbox d-inline-block">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox1" />
-                                                    <label for="checkbox1" className="mb-0"></label>
-                                                </div>
+                                                
                                             </th>
+                                            <th></th>
                                             <th>Tên danh mục</th>
                                             <th>Trạng thái</th>
                                             <th>Mô tả</th>
@@ -70,6 +68,7 @@ export default function ListCategoryFoods(props) {
                                             return (
                                                 <tr key={index}>
                                                     <td>{index + 1}</td>
+                                                    <td><img src={item.image} height="100"/></td>
                                                     <td>{item.name}</td>
                                                     <td>{item.status}</td>
                                                     <td>{item.description}</td>

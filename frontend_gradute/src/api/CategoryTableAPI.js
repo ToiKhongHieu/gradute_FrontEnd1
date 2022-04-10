@@ -5,12 +5,12 @@ export const getAllCategoryFood = () => {
   return instance.get(url);
 };
 
-export const getOneCategory = (id) => {
+export const getOneCategoryFood = (id) => {
   const url = `/categoryfoods/${id}`;
   return instance.get(url);
 };
 
-export const AddCategoryFood = (data) => {
+export const AddCategory = (data) => {
   const url = "/categoryfoods/create";
   return instance.post(url,data);
 };
