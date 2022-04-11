@@ -1,21 +1,21 @@
 import instance from "./intance";
 
-export const getAllCategoryProduct = () => {
+export const getAllCategoryFood = () => {
   const url = "/categoryfoods";
   return instance.get(url);
 };
 
-export const getOneCategory = (id) => {
+export const getOneCategoryFood = (id) => {
   const url = `/categoryfoods/${id}`;
   return instance.get(url);
 };
 
-export const AddCategory = (data) => {
+export const AddCategoryFoodd = (data) => {
   const url = "/categoryfoods/create";
   return instance.post(url,data);
 };
 
-export const removeCate = (id) => {
+export const removeCategoryFood = (id) => {
   const url = `/categoryfoods/${id}`;
   return instance.delete(url);
 };

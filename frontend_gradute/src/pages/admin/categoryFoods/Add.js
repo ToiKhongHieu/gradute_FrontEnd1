@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { AddCategory, getOneCategory } from "../../../api/CategoryFoodsAPI";
+import { AddCategoryFoodd, getOneCategoryFood } from "../../../api/CategoryFoodsAPI";
 import { useParams } from "react-router-dom";
 const AddCategoryFood = (props) => {
     const [inputMultipart, setInputMultipart] = useState(true);
@@ -18,7 +18,7 @@ const AddCategoryFood = (props) => {
         const getCategory = async () => {
             try {
                 if(id){
-                    const { data } = await getOneCategory(id);
+                    const { data } = await getOneCategoryFood(id);
                     setBtnTile("Sửa thể loại");
                     setcreatedAt(data.createdAt);
                     setImage(data.image);
@@ -49,7 +49,7 @@ const AddCategoryFood = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data1 = { id ,image , name , status , description , createdAt};
-        const {data} = await AddCategory(data1);
+        const {data} = await AddCategoryFoodd(data1);
         if(id){
             alert("Sửa thành công thể loại #" + data.id);
         }else{
