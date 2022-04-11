@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAllTables } from "../../../api/TablesAPI";
+import { getAllTables, removeTables } from "../../../api/TablesAPI";
 
 
 export default function ListAllTables(props) {
@@ -18,6 +18,19 @@ export default function ListAllTables(props) {
         }
         getTables();
     }, []);
+    const onremoveTables = async (id) => {
+        const check = window.confirm('Bạn có chắc muốn xóa table #' + id + " ?");
+        if(check){
+            try {
+                await removeTables(id);
+                const newTable = Tables.filter((item) => item.id !== id);
+                setTables(newTable);
+              } catch (error) {
+                console.log(error);
+              }
+              alert("Đã xóa bàn #" + id);
+        }
+    }
 
     return (
         <>
@@ -68,13 +81,13 @@ export default function ListAllTables(props) {
                                                     <td className="text-right">
                                                         <Link
                                                             className="btn btn-primary btn-sm ms-1"
-                                                            to={`/admin/category/${item.id}/edit`}
+                                                            to={`/admin/TablesAdd/${item.id}/edit`}
                                                         >
                                                             Edit
                                                         </Link>
                                                         <button
                                                             className="btn btn-danger btn-sm ms-1"
-                                                            // onClick={() => onRemoveCate(item.id)}
+                                                            onClick={() => onremoveTables(item.id)}
                                                         >
                                                             Delete
                                                         </button>

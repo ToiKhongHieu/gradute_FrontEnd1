@@ -1,41 +1,32 @@
 
 import { useEffect, useState } from "react";
-import { AddCategory, getOneCategory } from "../../../api/CategoryFoodsAPI";
+import { AddTables, getIdTables } from "../../../api/TablesAPI";
 import { useParams } from "react-router-dom";
-const AddCategoryFood = (props) => {
-    const [inputMultipart, setInputMultipart] = useState(true);
-    const changeMultipart = () => {
-        setInputMultipart(!inputMultipart);
-    }
+const CreateTables = (props) => {
     const [createdAt , setcreatedAt] = useState();
-    const [btnTile,setBtnTile] = useState("Thêm thể loại");
+    const [btnTile,setBtnTile] = useState("Thêm bàn");
     const {id} = useParams();
-    const [image, setImage] = useState("");
     const [name, setName] = useState("");
     const [status, setStatus] = useState("Sẵn sàng");
     const [description, setDescription] = useState("");
     useEffect(() => {
-        const getCategory = async () => {
+        const getTables = async () => {
             try {
                 if(id){
-                    const { data } = await getOneCategory(id);
-                    setBtnTile("Sửa thể loại");
+                    const { data } = await getIdTables(id);
+                    setBtnTile("Sửa bàn");
                     setcreatedAt(data.createdAt);
-                    setImage(data.image);
                     setName(data.name);
                     setStatus(data.status);
                     setDescription(data.description);
                     console.log(data);
                 }
             } catch (error) {
-                console.log("Error getCategories " + error);
+                console.log("Error Table " + error);
             }
         }
-        getCategory();
+        getTables();
     }, []);
-    const getImage = (e) => {
-        setImage(e.target.value);
-    }
     const getName = (e) => {
         setName(e.target.value);
     }
@@ -48,47 +39,21 @@ const AddCategoryFood = (props) => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const data1 = { id ,image , name , status , description , createdAt};
-        const {data} = await AddCategory(data1);
+        const data1 = { id , name , status , description , createdAt};
+        const {data} = await AddTables(data1);
         if(id){
-            alert("Sửa thành công thể loại #" + data.id);
+            alert("Sửa thành công bàn #" + data.id);
         }else{
-            alert("Thêm thành công thể loại #" + data.id);
+            alert("Thêm thành công bàn #" + data.id);
         }
         clearForm();
     }
     const clearForm = () => {
-        setImage("");
         setName("");
         setStatus("sẵn sàng");
         setDescription("");
     }
-    const renderForm = () => {
-        if (inputMultipart) {
-            return (
-                <div className="col-md-12">
-                    <div className="form-group">
-                        <label>Chọn Ảnh</label>
-                        <input type="file" className="form-control image-file" name="image" id="image"
-                            accept="../image/*"
-                            required />
-                        <a className="text-info" onClick={() => changeMultipart()}>hoặc thêm link ảnh</a>
-                    </div>
-                </div>
-            )
-        } if (!inputMultipart) {
-            return (
-                <div className="col-md-12">
-                    <div className="form-group">
-                        <label>Thêm link Ảnh</label>
-                        <input type="text" className="form-control image-file" name="image" id="image" onChange={getImage} required value={image} />
-                        <a className="text-info" onClick={() => changeMultipart()}>hoặc chọn ảnh từ máy</a>
-                    </div>
-                </div>
-            )
-        }
-    }
-
+   
     return (
             <div className="content-page">
                 <div className="container-fluid add-form-list">
@@ -97,18 +62,17 @@ const AddCategoryFood = (props) => {
                             <div className="card">
                                 <div className="card-header d-flex justify-content-between">
                                     <div className="header-title">
-                                       {!id &&  <h4 className="card-title">Thêm thể loại</h4>}
-                                       {id &&  <h4 className="card-title">Sửa thể loại</h4>}
+                                       {!id &&  <h4 className="card-title">Thêm bàn</h4>}
+                                       {id &&  <h4 className="card-title">Sửa bàn</h4>}
                                     </div>
                                 </div>
                                 <div className="card-body">
                                     <form onSubmit={handleSubmit} data-toggle="validator">
                                         <div className="row">
-                                            {renderForm()}
                                             <div className="col-md-12 mt-3">
                                                 <div className="form-group">
-                                                    <label>Tên thể loại</label>
-                                                    <input type="text" class="form-control" placeHolder="Điền tên thể loại ở đây !" name="name" id="name"
+                                                    <label>Tên bàn</label>
+                                                    <input type="text" class="form-control" placeHolder="Điền tên bàn    !" name="name" id="name"
                                                         required onChange={getName} value={name}/>
                                                     <div className="help-block with-errors">
                                                     </div>
@@ -140,4 +104,4 @@ const AddCategoryFood = (props) => {
             </div>
     )
 }
-export default AddCategoryFood;
+export default CreateTables;
