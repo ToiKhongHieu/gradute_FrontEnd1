@@ -8,7 +8,7 @@ const CreateTables = (props) => {
     const {id} = useParams();
     const [name, setName] = useState("");
     const [status, setStatus] = useState("Sẵn sàng");
-    const [description, setDescription] = useState("");
+    const [categoryId, setcategoryId] = useState("");
     useEffect(() => {
         const getTables = async () => {
             try {
@@ -18,7 +18,7 @@ const CreateTables = (props) => {
                     setcreatedAt(data.createdAt);
                     setName(data.name);
                     setStatus(data.status);
-                    setDescription(data.description);
+                    setcategoryId(data.description);
                     console.log(data);
                 }
             } catch (error) {
@@ -34,12 +34,12 @@ const CreateTables = (props) => {
         console.log(e.target.value);
         setStatus(e.target.value);
     }
-    const getDescription = (e) => {
-        setDescription(e.target.value);
+    const getcategoryId = (e) => {
+        setcategoryId(e.target.value);
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const data1 = { id , name , status , description , createdAt};
+        const data1 = { id , name , status , categoryId , createdAt};
         const {data} = await AddTables(data1);
         if(id){
             alert("Sửa thành công bàn #" + data.id);
@@ -51,7 +51,7 @@ const CreateTables = (props) => {
     const clearForm = () => {
         setName("");
         setStatus("sẵn sàng");
-        setDescription("");
+        setcategoryId("");
     }
    
     return (
@@ -87,11 +87,13 @@ const CreateTables = (props) => {
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div className="form-label-group mb-3 mt-3">
-                                                <textarea data-length="20" class="form-control" id="description" rows="3"
-                                                    placeholder="Mô tả" name="description" onChange={getDescription} value={description}></textarea>
-                                                <label>Mô tả</label>
-                                            </div>
+                                            <div className="form-group">
+                                                    <label>Thể loại bàn</label>
+                                                    <input type="text" class="form-control" placeHolder="Thể loại bàn    !" name="name" id="name"
+                                                        required onChange={getcategoryId} value={categoryId}/>
+                                                    <div className="help-block with-errors">
+                                                    </div>
+                                                </div>
                                         </div>
                                         <button  type="submit" className="btn btn-primary mr-2">{btnTile}</button>
                                         <button type="reset" onClick={clearForm} className="btn btn-danger">Cài lại</button>
