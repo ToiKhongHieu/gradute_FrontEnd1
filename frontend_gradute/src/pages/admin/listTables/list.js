@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ReactTable from 'react-table-6';
+import 'react-table-6/react-table.css';
 import { getAllTables, removeTables } from "../../../api/TablesAPI";
+
 
 
 export default function ListAllTables(props) {
@@ -31,6 +34,63 @@ export default function ListAllTables(props) {
               alert("Đã xóa bàn #" + id);
         }
     }
+    const columns = [{
+        Header: props => <th className="col d-flex justify-content-center text-info">ID</th>,
+            accessor: 'id' 
+        }, {
+            Header: props => <th className="col d-flex justify-content-center text-info">Tên</th>,
+            accessor: 'name',
+            Cell: props => <td>{props.value}</td> 
+        }
+        , {
+            Header: props => <th className="col d-flex justify-content-center text-info">Trạng thái</th>,
+            accessor: 'status',
+            Cell: props => <td>{props.value}</td> 
+        }
+        , {
+            Header: props => <th className="col d-flex justify-content-center text-info">Tên thể loại</th>,
+            accessor: 'categoryId',
+            Cell: props => <td>{props.value}</td> 
+        }
+        , {
+            Header: props => <th className="col d-flex justify-content-center text-info">Ngày tạo</th>,
+            accessor: 'createdAt' ,
+            Cell: props => <td className="col d-flex justify-content-center">{props.value.split("T")[0]}</td> 
+        }, {
+            Header: props => <th className="col d-flex justify-content-center text-info">Ngày sửa</th>,
+            accessor: 'updatedAt',
+            Cell: props => <td className="col d-flex justify-content-center">{props.value.split("T")[0] }</td>
+        },{
+            Header: props => <th className="col d-flex text-info">Hành động</th>,
+            accessor: 'id',
+            Cell: props => <td className="text-right justify-content-center">
+            <Link
+                className="btn btn-primary btn-sm ms-1"
+                to={`/admin/TablesAdd/${props.value}`}
+            >
+                Sửa
+            </Link>
+            <button
+                className="btn btn-danger btn-sm ms-1"
+                onClick={() => onremoveTables(props.value)}
+            >
+                Xóa
+            </button>
+        </td>
+        }
+    ]
+    const customTrGroupComponent = (props) => {
+        console.log("props",props);
+        var extra_style = null;
+        if (props.viewIndex % 2 != 0 && props.viewIndex) {
+          extra_style = {
+            backgroundColor: '#F0FFFO'
+          }
+        }
+        return <div className='rt-tr-group' style={extra_style}>
+          {props.children} 
+        </div>;
+      }
 
     return (
         <>
@@ -47,56 +107,16 @@ export default function ListAllTables(props) {
                                     className="las la-plus mr-3"></i>Thêm bàn</a>
                             </div>
                         </div>
-                        <div className="col-lg-12">
+                        <div className="col-lg-12 mt-3">
                             <div className="table-responsive rounded mb-3">
-                                <table className="data-table table mb-0 tbl-server-info">
-                                    <thead className="bg-white text-uppercase">
-                                        <tr className="ligth ligth-data">
-                                            <th>
-                                                <div className="checkbox d-inline-block">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox1" />
-                                                    <label for="checkbox1" className="mb-0"></label>
-                                                </div>
-                                            </th>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>STATUS</th>
-                                            <th>CATEGORYID</th>
-                                            <th>CREATED_AT</th>
-                                            <th>UPDATED_AT</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="ligth-body">
-                                        {Tables.map((item, index) => {
-                                            return (
-                                                <tr key={index}>
-                                                    <td>{index + 1}</td>
-                                                    <td>{item.id}</td>
-                                                    <td>{item.name}</td>
-                                                    <td>{item.status}</td>
-                                                    <td>{item.categoryId}</td>
-                                                    <td>{item.createdAt}</td>
-                                                    <td>{item.updatedAt}</td>
-                                                    <td className="text-right">
-                                                        <Link
-                                                            className="btn btn-primary btn-sm ms-1"
-                                                            to={`/admin/TablesAdd/${item.id}/edit`}
-                                                        >
-                                                            Edit
-                                                        </Link>
-                                                        <button
-                                                            className="btn btn-danger btn-sm ms-1"
-                                                            onClick={() => onremoveTables(item.id)}
-                                                        >
-                                                            Delete
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            )
-                                        })}
-                                    </tbody>
-                                </table>
+                                <ReactTable
+                                    data={Tables}
+                                    columns={columns}
+                                    defaultPageSize={5}
+                                    pageSizeOptions = {[5,10,15]}  
+                                    getTrGroupProps={(state, rowInfo, column, instance) => rowInfo}
+                                    TrGroupComponent={customTrGroupComponent}
+                                />
                             </div>
                         </div>
                     </div>
@@ -107,7 +127,7 @@ export default function ListAllTables(props) {
                             <div className="modal-body">
                                 <div className="popup text-left">
                                     <div className="media align-items-top justify-content-between">
-                                        <h3 className="mb-3">Product</h3>
+                                        <h3 className="mb-3">Bàn</h3>
                                         <div className="btn-cancel p-0" data-dismiss="modal"><i class="las la-times"></i></div>
                                     </div>
                                     <div className="content edit-notes">

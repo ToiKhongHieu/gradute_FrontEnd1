@@ -10,6 +10,7 @@ import Dashboard from "./pages/admin/Dashboard";
 // import AddCategoryTable from "./pages/admin/CategoryTable/Add";
 
 export default function Routess(props) {
+    
     return (
         <BrowserRouter>
             <AdminLayout>
@@ -23,7 +24,7 @@ export default function Routess(props) {
                     <Route exact path="/admin/TablesAdd" element={<CreateTables {...props} />} />
                     <Route exact path="/admin/TablesAdd:/id" element={<CreateTables {...props} />} />
                     <Route  path="/admin/ListTables" element={<ListAllTables {...props} />}/>
-                    <Route exact path="/" element={<Dashboard {...props} />} />categorytableadd
+                    <Route exact path="/" element={<Dashboard {...props} />} />categorytableadd                 
                 </Routes>
             </AdminLayout>
         </BrowserRouter>
