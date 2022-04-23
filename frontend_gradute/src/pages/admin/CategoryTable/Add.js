@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import { getOneCategoryTable , AddCategoryTablee} from "../../../api/CategoryTableAPI";
 const AddCategoryTable = (props) => {
@@ -7,6 +8,7 @@ const AddCategoryTable = (props) => {
     const {id} = useParams();
     const [categoryName, setCategoryName] = useState("");
     const [description, setDescription] = useState("");
+    const history = useNavigate();
     useEffect(() => {
         const getCategory = async () => {
             try {
@@ -14,7 +16,7 @@ const AddCategoryTable = (props) => {
                     const { data } = await getOneCategoryTable(id);
                     setBtnTile("Sửa thể loại bàn");
                     setcreatedAt(data.createdAt);
-                    setCategoryName(data.CategoryName);
+                    setCategoryName(data.categoryName);
                     setDescription(data.description);
                 }
             } catch (error) {
@@ -39,6 +41,10 @@ const AddCategoryTable = (props) => {
             alert("Thêm thành công thể loại bàn #" + data.id);
         }
         clearForm();
+        const check = window.confirm('Bạn có muốn về trang danh sách không ?');
+        if (check) {
+            history("/admin/categorytable");
+        }
     }
     const clearForm = () => {
         setCategoryName("");

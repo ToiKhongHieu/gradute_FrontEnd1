@@ -16,6 +16,7 @@ export default function Routess(props) {
                 <Routes >
                     <Route exact path="/admin/categoryFoods" element={<ListCategoryFoods {...props} />} />
                     <Route exact path="/admin/categorytable" element={<ListCategoryTable {...props} />} />
+                    <Route exact path="/admin/categorytableEdit/:id" element={<AddCategoryTable {...props} />} />
                     <Route exact path="/admin/categoryFoodAdd" element={<AddCategoryFood {...props} />} />
                     <Route exact path="/admin/categorytableadd" element={<AddCategoryTable {...props} />} />
                     <Route exact path="/admin/CategoryFoodEdit/:id" element={<AddCategoryFood {...props} />} />

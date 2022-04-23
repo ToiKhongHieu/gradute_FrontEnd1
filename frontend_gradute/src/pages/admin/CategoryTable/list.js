@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import ReactTable from 'react-table-6';
 import 'react-table-6/react-table.css';
 import { getAllCategoryTable, removeCategoryTable } from "../../../api/CategoryTableAPI";
@@ -36,6 +37,23 @@ export default function ListCategoryTable(props) {
             Header: props => <th className="col d-flex justify-content-center text-info">Ngày sửa</th>,
             accessor: 'updatedAt',
             Cell: props => <td className="col d-flex justify-content-center">{props.value.split("T")[0] }</td>
+        }, {
+            Header: props => <th className="col d-flex text-info">Hành động</th>,
+            accessor: 'id',
+            Cell: props => <td className="text-right justify-content-center">
+            <Link
+                className="btn btn-primary btn-sm ms-1"
+                to={`/admin/categorytableEdit/${props.value}`}
+            >
+                Sửa
+            </Link>
+            <button
+                className="btn btn-danger btn-sm ms-1"
+                onClick={() => onRemoveCate(props.value)}
+            >
+                Xóa
+            </button>
+        </td>
         }
     ]
 
@@ -57,7 +75,7 @@ export default function ListCategoryTable(props) {
         var extra_style = null;
         if (props.viewIndex % 2 != 0 && props.viewIndex) {
           extra_style = {
-            backgroundColor: '#DCDCDC'
+            backgroundColor: '#F0FFF0'
           }
         }
         return <div className='rt-tr-group' style={extra_style}>

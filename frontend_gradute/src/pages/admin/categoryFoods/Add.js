@@ -1,4 +1,4 @@
-
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { AddCategoryFoodd, getOneCategoryFood } from "../../../api/CategoryFoodsAPI";
 import { useParams } from "react-router-dom";
@@ -7,6 +7,7 @@ const AddCategoryFood = (props) => {
     const changeMultipart = () => {
         setInputMultipart(!inputMultipart);
     }
+    const history = useNavigate();
     const [createdAt , setcreatedAt] = useState();
     const [btnTile,setBtnTile] = useState("Thêm thể loại");
     const {id} = useParams();
@@ -56,6 +57,10 @@ const AddCategoryFood = (props) => {
             alert("Thêm thành công thể loại #" + data.id);
         }
         clearForm();
+        const check = window.confirm('Bạn có muốn về trang danh sách không ?');
+        if (check) {
+            history("/admin/categoryFoods");
+        }
     }
     const clearForm = () => {
         setImage("");
