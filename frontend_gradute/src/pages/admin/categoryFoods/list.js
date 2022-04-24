@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAllCategoryFood , removeCategoryFood } from "../../../api/CategoryFoodsAPI";
-
+import { getAllCategoryFood, removeCategoryFood } from "../../../api/CategoryFoodsAPI";
+import ReactTable from 'react-table-6';
+import 'react-table-6/react-table.css';
 
 export default function ListCategoryFoods(props) {
     const [categories, setCategories] = useState([]);
@@ -20,16 +21,77 @@ export default function ListCategoryFoods(props) {
 
     const onRemoveCate = async (id) => {
         const check = window.confirm('Bạn có chắc muốn xóa thể loại #' + id + " ?");
-        if(check){
+        if (check) {
             try {
                 await removeCategoryFood(id);
                 const newProducts = categories.filter((item) => item.id !== id);
                 setCategories(newProducts);
-              } catch (error) {
+            } catch (error) {
                 console.log(error);
-              }
-              alert("Đã xóa thể loại #" + id);
+            }
+            alert("Đã xóa thể loại #" + id);
         }
+    }
+
+    const columns = [{
+        Header: props => <th className="col d-flex justify-content-center text-info"></th>,
+        accessor: 'image',
+        Cell: props => <td><img src={props.value} height="100" /></td>
+    }, {
+        Header: props => <th className="col d-flex justify-content-center text-info">Loại món</th>,
+        accessor: 'name',
+        Cell: props => <td className="col d-flex justify-content-center">{props.value}</td>
+    }
+        , {
+        Header: props => <th className="col d-flex justify-content-center text-info">Trạng thái</th>,
+        accessor: 'status',
+        Cell: props => {
+            if (props.value == "Sẵn sàng") return (
+                <td className="col d-flex justify-content-center text-success">{props.value}</td>)
+            if (props.value == "Ẩn") return (<td className="col d-flex justify-content-center text-muted">{props.value}</td>)
+        }
+    }, {
+        Header: props => <th className="col d-flex justify-content-center text-info">Mô tả</th>,
+        accessor: 'description',
+        Cell: props => <td className="col d-flex justify-content-center">{props.value}</td>
+    }, {
+        Header: props => <th className="col d-flex justify-content-center text-info">Ngày thêm</th>,
+        accessor: 'createdAt',
+        Cell: props => <td className="col d-flex justify-content-center">{props.value.split("T")[0]}</td>
+    }, {
+        Header: props => <th className="col d-flex justify-content-center text-info">Ngày sửa</th>,
+        accessor: 'updatedAt',
+        Cell: props => <td className="col d-flex justify-content-center">{props.value.split("T")[0]}</td>
+    }, {
+        Header: props => <th className="col d-flex text-info">Hành động</th>,
+        accessor: 'id',
+        Cell: props => <td className="text-right justify-content-center">
+            <Link
+                className="btn btn-primary btn-sm ms-1"
+                to={`/admin/CategoryFoodEdit/${props.value}`}
+            >
+                Sửa
+            </Link>
+            <button
+                className="btn btn-danger btn-sm ms-1"
+                onClick={() => onRemoveCate(props.value)}
+            >
+                Xóa
+            </button>
+        </td>
+    }
+    ]
+    const customTrGroupComponent = (props) => {
+        console.log("props", props);
+        var extra_style = null;
+        if (props.viewIndex % 2 != 0 && props.viewIndex) {
+            extra_style = {
+                backgroundColor: '#F0FFF0'
+            }
+        }
+        return <div className='rt-tr-group' style={extra_style}>
+            {props.children}
+        </div>;
     }
     return (
         <>
@@ -48,51 +110,14 @@ export default function ListCategoryFoods(props) {
                         </div>
                         <div className="col-lg-12">
                             <div className="table-responsive rounded mb-3">
-                                <table className="data-table table mb-0 tbl-server-info">
-                                    <thead className="bg-white text-uppercase">
-                                        <tr className="ligth ligth-data">
-                                            <th>
-                                                
-                                            </th>
-                                            <th></th>
-                                            <th>Tên thể loại món</th>
-                                            <th>Trạng thái</th>
-                                            <th>Mô tả</th>
-                                            <th>Ngày tạo</th>
-                                            <th>Ngày sửa</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="ligth-body">
-                                        {categories.map((item, index) => {
-                                            return (
-                                                <tr key={index}>
-                                                    <td>{index + 1}</td>
-                                                    <td><img src={item.image} height="100"/></td>
-                                                    <td>{item.name}</td>
-                                                    <td>{item.status}</td>
-                                                    <td>{item.description}</td>
-                                                    <td>{item.createdAt}</td>
-                                                    <td>{item.updatedAt}</td>
-                                                    <td className="text-right">
-                                                        <Link
-                                                            className="btn btn-primary btn-sm ms-1"
-                                                            to={`/admin/CategoryFoodEdit/${item.id}`}
-                                                        >
-                                                            Edit
-                                                        </Link>
-                                                        <button
-                                                            className="btn btn-danger btn-sm ms-1"
-                                                            onClick={() => onRemoveCate(item.id)}
-                                                        >
-                                                            Delete
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            )
-                                        })}
-                                    </tbody>
-                                </table>
+                                <ReactTable
+                                    data={categories}
+                                    columns={columns}
+                                    defaultPageSize={5}
+                                    pageSizeOptions={[5, 10, 15]}
+                                    getTrGroupProps={(state, rowInfo, column, instance) => rowInfo}
+                                    TrGroupComponent={customTrGroupComponent}
+                                />
                             </div>
                         </div>
                     </div>
