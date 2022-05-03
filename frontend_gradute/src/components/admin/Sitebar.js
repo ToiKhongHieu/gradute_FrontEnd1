@@ -3,8 +3,9 @@ export default function Sidebar() {
         <>
             <div className="iq-sidebar  sidebar-default ">
                 <div className="iq-sidebar-logo d-flex align-items-center justify-content-between">
-                    <a href="../backend/index.html" className="header-logo">
-                        <img src="../assets/images/logo.png" className="img-fluid rounded-normal light-logo" alt="logo"/><h5 class="logo-title light-logo ml-3">POSDash</h5>
+                    <a href="/" className="header-logo">
+                        <img src="../assets/images/logo.png" className="img-fluid rounded-normal light-logo" alt="logo"/>
+                        <h5 class="logo-title light-logo ml-3">Tano</h5>
                     </a>
                     <div className="iq-menu-bt-sidebar ml-0">
                         <i className="las la-bars wrapper-menu"></i>
@@ -20,29 +21,6 @@ export default function Sidebar() {
                                     </svg>
                                     <span className="ml-4">Thống kê</span>
                                 </a>
-                            </li>
-                            <li className=" ">
-                                <a href="#product" className="collapsed" data-toggle="collapse" aria-expanded="false">
-                                    <svg class="svg-icon" id="p-dash2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
-                                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                                    </svg>
-                                    <span className="ml-4">Sản phẩm</span>
-                                    <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
-                                    </svg>
-                                </a>
-                                <ul id="product" className="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                                    <li className="">
-                                        <a href="../backend/page-list-product.html">
-                                            <i className="las la-minus"></i><span>Danh sách sản phẩm</span>
-                                        </a>
-                                    </li>
-                                    <li className="">
-                                        <a href="../backend/page-add-product.html">
-                                            <i className="las la-minus"></i><span>Thêm sản phẩm</span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
                             <li className=" ">
                                 <a href="#category" className="collapsed" data-toggle="collapse" aria-expanded="false">
@@ -67,6 +45,30 @@ export default function Sidebar() {
                                     </li>
                                 </ul>
                             </li>
+                            <li className=" ">
+                                <a href="#product" className="collapsed" data-toggle="collapse" aria-expanded="false">
+                                    <svg class="svg-icon" id="p-dash2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                    </svg>
+                                    <span className="ml-4">Sản phẩm</span>
+                                    <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                                    </svg>
+                                </a>
+                                <ul id="product" className="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                                    <li className="">
+                                        <a href="../backend/page-list-product.html">
+                                            <i className="las la-minus"></i><span>Danh sách sản phẩm</span>
+                                        </a>
+                                    </li>
+                                    <li className="">
+                                        <a href="../backend/page-add-product.html">
+                                            <i className="las la-minus"></i><span>Thêm sản phẩm</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                           
                             <li className=" ">
                                 <a href="#sale" className="collapsed" data-toggle="collapse" aria-expanded="false">
                                     <svg class="svg-icon" id="p-dash4" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -95,25 +97,68 @@ export default function Sidebar() {
                                     <svg class="svg-icon" id="p-dash5" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
                                         <line x1="1" y1="10" x2="23" y2="10"></line>
                                     </svg>
-                                    <span className="ml-4">Purchases</span>
+                                    <span className="ml-4">Bàn</span>
                                     <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                                     </svg>
                                 </a>
                                 <ul id="purchase" className="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                                     <li className="">
-                                        <a href="../backend/page-list-purchase.html">
-                                            <i className="las la-minus"></i><span>List Purchases</span>
+                                        <a href="/admin/ListTables">
+                                            <i className="las la-minus"></i><span>Danh sách bàn</span>
                                         </a>
                                     </li>
                                     <li className="">
-                                        <a href="../backend/page-add-purchase.html">
-                                            <i className="las la-minus"></i><span>Add purchase</span>
+                                        <a href="/admin/TablesAdd">
+                                            <i className="las la-minus"></i><span>Thêm bàn</span>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
                             <li className=" ">
+                                <a href="#people" className="collapsed" data-toggle="collapse" aria-expanded="false">
+                                    <svg class="svg-icon" id="p-dash8" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                    </svg>
+                                    <span className="ml-4">Người dùng</span>
+                                    <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                                    </svg>
+                                </a>
+                                <ul id="people" className="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                                    <li className="">
+                                        <a href="/admin/ListUsers">
+                                            <i className="las la-minus"></i><span>Danh sách người dùng</span>
+                                        </a>
+                                    </li>
+                                    {/* <li className="">
+                                        <a href="../backend/page-add-customers.html">
+                                            <i className="las la-minus"></i><span>Add Customers</span>
+                                        </a>
+                                    </li> */}
+                                    {/* <li className="">
+                                        <a href="../backend/page-list-users.html">
+                                            <i className="las la-minus"></i><span>Users</span>
+                                        </a>
+                                    </li>
+                                    <li className="">
+                                        <a href="../backend/page-add-users.html">
+                                            <i className="las la-minus"></i><span>Add Users</span>
+                                        </a>
+                                    </li>
+                                    <li className="">
+                                        <a href="../backend/page-list-suppliers.html">
+                                            <i className="las la-minus"></i><span>Suppliers</span>
+                                        </a>
+                                    </li>
+                                    <li className="">
+                                        <a href="../backend/page-add-supplier.html">
+                                            <i className="las la-minus"></i><span>Add Suppliers</span>
+                                        </a>
+                                    </li> */}
+                                </ul>
+                            </li>
+                            {/* <li className=" ">
                                 <a href="#return" className="collapsed" data-toggle="collapse" aria-expanded="false">
                                     <svg class="svg-icon" id="p-dash6" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <polyline points="4 14 10 14 10 20"></polyline><polyline points="20 10 14 10 14 4"></polyline><line x1="14" y1="10" x2="21" y2="3"></line><line x1="3" y1="21" x2="10" y2="14"></line>
@@ -135,51 +180,9 @@ export default function Sidebar() {
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
-                            <li className=" ">
-                                <a href="#people" className="collapsed" data-toggle="collapse" aria-expanded="false">
-                                    <svg class="svg-icon" id="p-dash8" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                    </svg>
-                                    <span className="ml-4">People</span>
-                                    <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
-                                    </svg>
-                                </a>
-                                <ul id="people" className="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                                    <li className="">
-                                        <a href="../backend/page-list-customers.html">
-                                            <i className="las la-minus"></i><span>Customers</span>
-                                        </a>
-                                    </li>
-                                    <li className="">
-                                        <a href="../backend/page-add-customers.html">
-                                            <i className="las la-minus"></i><span>Add Customers</span>
-                                        </a>
-                                    </li>
-                                    <li className="">
-                                        <a href="../backend/page-list-users.html">
-                                            <i className="las la-minus"></i><span>Users</span>
-                                        </a>
-                                    </li>
-                                    <li className="">
-                                        <a href="../backend/page-add-users.html">
-                                            <i className="las la-minus"></i><span>Add Users</span>
-                                        </a>
-                                    </li>
-                                    <li className="">
-                                        <a href="../backend/page-list-suppliers.html">
-                                            <i className="las la-minus"></i><span>Suppliers</span>
-                                        </a>
-                                    </li>
-                                    <li className="">
-                                        <a href="../backend/page-add-supplier.html">
-                                            <i className="las la-minus"></i><span>Add Suppliers</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li className="">
+                            </li> */}
+                            
+                            {/* <li className="">
                                 <a href="../backend/page-report.html" className="">
                                     <svg class="svg-icon" id="p-dash7" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline>
@@ -188,8 +191,8 @@ export default function Sidebar() {
                                 </a>
                                 <ul id="reports" className="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                                 </ul>
-                            </li>
-                            <li className=" ">
+                            </li> */}
+                            {/* <li className=" ">
                                 <a href="#otherpage" className="collapsed" data-toggle="collapse" aria-expanded="false">
                                     <svg class="svg-icon" id="p-dash9" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><rect x="7" y="7" width="3" height="9"></rect><rect x="14" y="7" width="3" height="5"></rect>
@@ -546,10 +549,10 @@ export default function Sidebar() {
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
-                        </ul>
+                            </li>*/}
+                        </ul> 
                     </nav>
-                    <div id="sidebar-bottom" className="position-relative sidebar-bottom">
+                    {/* <div id="sidebar-bottom" className="position-relative sidebar-bottom">
                         <div className="card border-none">
                             <div className="card-body p-0">
                                 <div className="sidebarbottom-content">
@@ -559,7 +562,7 @@ export default function Sidebar() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="p-3"></div>
                 </div>
             </div>

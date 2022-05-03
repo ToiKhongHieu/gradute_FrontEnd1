@@ -1,23 +1,36 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ReactTable from 'react-table-6';
 import 'react-table-6/react-table.css';
-import { getAllTables, removeTables } from "../../../api/TablesAPI";
+import { getAllTables, getTableByCategory, removeTables } from "../../../api/TablesAPI";
 
 
 
 export default function ListAllTables(props) {
     const [Tables, setTables] = useState([]);
+    const {id} = useParams();
 
     useEffect(() => {
         const getTables = async () => {
-            try {
-                const { data } = await getAllTables();
-                setTables(data);
-                console.log(data);
-            } catch (error) {
-                console.log("Error getTables " + error);
+            if(!id){
+                try {
+                    const { data } = await getAllTables();
+                    setTables(data);
+                    console.log(data);
+                } catch (error) {
+                    console.log("Error getTables " + error);
+                }
+            }else{
+                try {
+                    const { data } = await getTableByCategory();
+                    setTables(data);
+                    console.log(data);
+                } catch (error) {
+                    console.log("Error getTables " + error);
+                }
             }
+            
         }
         getTables();
     }, []);

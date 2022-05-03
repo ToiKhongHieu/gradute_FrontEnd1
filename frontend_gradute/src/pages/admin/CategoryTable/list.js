@@ -13,6 +13,7 @@ export default function ListCategoryTable(props) {
         const getCategory = async () => {
             try {
                 const {data} = await getAllCategoryTable();
+                console.log(data);
                 await setCategories(data);
             } catch (error) {
                 console.log("Error getCategories " + error);
@@ -53,6 +54,12 @@ export default function ListCategoryTable(props) {
             >
                 Xóa
             </button>
+            <Link
+                className="btn-sm ms-1"
+                to={`/admin/ListTables/${props.value}`}
+            >
+                Chi tiết các bàn
+            </Link>
         </td>
         }
     ]

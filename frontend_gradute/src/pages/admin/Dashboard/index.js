@@ -1,5 +1,20 @@
+import { useEffect, useState } from "react";
+import { getTotal } from "../../../api/oderAPI";
 
 export default function Dashboard(props) {
+    const [totalSales, setTotalSales] = useState(0);
+
+    useEffect(() => {
+        const getDashboard = async () => {
+            try {
+                const {data} = await getTotal();
+                await setTotalSales(data);
+            } catch (error) {
+                console.log("Error getCategories " + error);
+            }
+        }
+        getDashboard();
+    }, []);
     
     return (
         <>
@@ -24,8 +39,8 @@ export default function Dashboard(props) {
                                                 <img src="../assets/images/product/1.png" class="img-fluid" alt="image" />
                                             </div>
                                             <div>
-                                                <p className="mb-2">Total Sales</p>
-                                                <h4>31.50</h4>
+                                                <p className="mb-2">Tổng doanh số</p>
+                                                <h4>{totalSales}</h4>
                                             </div>
                                         </div>
                                         <div className="iq-progress-bar mt-2">
