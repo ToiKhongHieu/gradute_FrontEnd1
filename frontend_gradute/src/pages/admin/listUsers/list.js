@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ReactTable from 'react-table-6';
+import 'react-table-6/react-table.css';
 import { getAllUsers } from "../../../api/UsersAPI";
 
 
@@ -18,6 +20,103 @@ export default function ListAllUsers(props) {
         }
         getUsers();
     }, []);
+    const columns = [{
+        Header: props => <th className="col d-flex justify-content-center text-info">ID</th>,
+            accessor: 'id' 
+        }, {
+            Header: props => <th className="col d-flex justify-content-center text-info">UsersName</th>,
+            accessor: 'username',
+            Cell: props => <td>{props.value}</td> 
+        }
+        , {
+            Header: props => <th className="col d-flex justify-content-center text-info">Name</th>,
+            accessor: 'name',
+            Cell: props => <td>{props.value}</td> 
+        }
+        , {
+            Header: props => <th className="col d-flex justify-content-center text-info">ISFEMALE</th>,
+            accessor: 'isfemale',
+            Cell: props => <td>{props.value}</td> 
+        }
+        , {
+            Header: props => <th className="col d-flex justify-content-center text-info">PHONENUMBER</th>,
+            accessor: 'phonenumber',
+            Cell: props => <td>{props.value}</td> 
+        }
+        , {
+            Header: props => <th className="col d-flex justify-content-center text-info">CMND</th>,
+            accessor: 'cmnd',
+            Cell: props => <td>{props.value}</td> 
+        }
+        , {
+            Header: props => <th className="col d-flex justify-content-center text-info">DATEOFBIRTH</th>,
+            accessor: 'dateofbirth',
+            Cell: props => <td>{props.value}</td> 
+        }
+        , {
+            Header: props => <th className="col d-flex justify-content-center text-info">ADDRESS</th>,
+            accessor: 'address',
+            Cell: props => <td>{props.value}</td> 
+        }
+        , {
+            Header: props => <th className="col d-flex justify-content-center text-info">EMAIL</th>,
+            accessor: 'eamil',
+            Cell: props => <td>{props.value}</td> 
+        }
+        , {
+            Header: props => <th className="col d-flex justify-content-center text-info">ROLE</th>,
+            accessor: 'role',
+            Cell: props => <td>{props.value}</td> 
+        }
+        , {
+            Header: props => <th className="col d-flex justify-content-center text-info">SALARY</th>,
+            accessor: 'salary',
+            Cell: props => <td>{props.value}</td> 
+        }
+        , {
+            Header: props => <th className="col d-flex justify-content-center text-info">BLOCKED</th>,
+            accessor: 'blocked',
+            Cell: props => <td>{props.value}</td> 
+        }
+        , {
+            Header: props => <th className="col d-flex justify-content-center text-info">CONFIRMED</th>,
+            accessor: 'confirmed',
+            Cell: props => <td>{props.value}</td> 
+        }
+        , {
+            Header: props => <th className="col d-flex justify-content-center text-info">Ngày tạo</th>,
+            accessor: 'createdAt' ,
+            Cell: props => <td className="col d-flex justify-content-center">{props.value.split("T")[0]}</td> 
+        }, {
+            Header: props => <th className="col d-flex justify-content-center text-info">Ngày sửa</th>,
+            accessor: 'updatedAt',
+            Cell: props => <td className="col d-flex justify-content-center">{props.value.split("T")[0] }</td>
+        },{
+            Header: props => <th className="col d-flex text-info">Hành động</th>,
+            accessor: 'id',
+            Cell: props => <td className="text-right justify-content-center">
+            <Link
+                className="btn btn-primary btn-sm ms-1"
+                to={`/admin/category/${props.value}/edit`}
+            >
+                Sửa
+            </Link>
+         
+        </td>
+        }
+    ]
+    const customTrGroupComponent = (props) => {
+        console.log("props",props);
+        var extra_style = null;
+        if (props.viewIndex % 2 != 0 && props.viewIndex) {
+          extra_style = {
+            backgroundColor: '#F0FFFO'
+          }
+        }
+        return <div className='rt-tr-group' style={extra_style}>
+          {props.children} 
+        </div>;
+      }
 
     return (
         <>
@@ -34,78 +133,18 @@ export default function ListAllUsers(props) {
                                     className="las la-plus mr-3"></i>Thêm người dùng</a>
                             </div>
                         </div>
-                        <div className="col-lg-12">
+                        <div className="col-lg-12 mt-3">
                             <div className="table-responsive rounded mb-3">
-                                <table className="data-table table mb-0 tbl-server-info">
-                                    <thead className="bg-white text-uppercase">
-                                        <tr className="ligth ligth-data">
-                                            <th>
-                                                <div className="checkbox d-inline-block">
-                                                    <input type="checkbox" class="checkbox-input" id="checkbox1" />
-                                                    <label for="checkbox1" className="mb-0"></label>
-                                                </div>
-                                            </th>
-                                            <th>ID</th>
-                                            <th>UsersName</th>
-                                            <th>Name</th>
-                                            <th>ISFEMALE</th>
-                                            <th>PHONENUMBER</th>
-                                            <th>CMND</th>
-                                            <th>DATEOFBIRTH</th>
-                                            <th>ADDRESS</th>
-                                            <th>EMAIL</th>
-                                            <th>PASSWORD</th>
-                                            <th>ROLE</th>
-                                            <th>SALARY</th>
-                                            <th>BLOCKED</th>
-                                            <th>CONFIRMED</th>
-                                            <th>Ngày tạo</th>
-                                            <th>Ngày sửa</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="ligth-body">
-                                        {Users.map((item, index) => {
-                                            return (
-                                                <tr key={index}>
-                                                    <td>{index + 1}</td>
-                                                    <td>{item.id}</td>
-                                                    <td>{item.username}</td>
-                                                    <td>{item.name}</td>
-                                                    <td>{item.isfemale}</td>
-                                                    <td>{item.phonenumber}</td>
-                                                    <td>{item.cmnd}</td>
-                                                    <td>{item.dateofbirth}</td>
-                                                    <td>{item.address}</td>
-                                                    <td>{item.eamil}</td>
-                                                    <td>{item.password}</td>
-                                                    <td>{item.role}</td>
-                                                    <td>{item.salary}</td>
-                                                    <td>{item.blocked}</td>
-                                                    <td>{item.confirmed}</td>
-                                                    <td>{item.createdAt}</td>
-                                                    <td>{item.updatedAt}</td>
-                                                    <td className="text-right">
-                                                        <Link
-                                                            className="btn btn-primary btn-sm ms-1"
-                                                            to={`/admin/category/${item.id}/edit`}
-                                                        >
-                                                            Edit
-                                                        </Link>
-                                                        <button
-                                                            className="btn btn-danger btn-sm ms-1"
-                                                            // onClick={() => onRemoveCate(item.id)}
-                                                        >
-                                                            Delete
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            )
-                                        })}
-                                    </tbody>
-                                </table>
+                                <ReactTable
+                                    data={Users}
+                                    columns={columns}
+                                    defaultPageSize={5}
+                                    pageSizeOptions = {[5,10,15]}  
+                                    getTrGroupProps={(state, rowInfo, column, instance) => rowInfo}
+                                    TrGroupComponent={customTrGroupComponent}
+                                />
                             </div>
-                        </div>
+                        </div>           
                     </div>
                 </div>
                 <div class="modal fade" id="edit-note" tabIndex="-1" role="dialog" aria-hidden="true">
