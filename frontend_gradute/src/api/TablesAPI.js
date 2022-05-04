@@ -15,6 +15,11 @@ export const AddTables = (data) => {
 };
 
 export const removeTables= (id) => {
-  const url = `/api//tables/${id}`;
+  const url = `/api/tables/${id}`;
   return instance.delete(url);
+};
+
+export const getTableByCategory = (id) => {
+  const url = `/api/tables/category/${id}`;
+  return instance.get(url);
 };

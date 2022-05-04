@@ -8,15 +8,13 @@ export default function Navbar() {
                         <i className="ri-menu-line wrapper-menu"></i>
                         <a href="../backend/index.html" className="header-logo">
                             <img src="../assets/images/logo.png" class="img-fluid rounded-normal" alt="logo" />
-                            <h5 className="logo-title ml-3">POSDash</h5>
-
                         </a>
                     </div>
                     <div className="iq-search-bar device-search">
-                        <form action="#" className="searchbox">
+                        {/* <form action="#" className="searchbox">
                             <a className="search-link" href="#"><i class="ri-search-line"></i></a>
                             <input type="text" class="text search-input" placeHolder="Search here..." />
-                        </form>
+                        </form> */}
                     </div>
                     <div className="d-flex align-items-center">
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -27,12 +25,12 @@ export default function Navbar() {
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav ml-auto navbar-list align-items-center">
                                 <li className="nav-item nav-icon dropdown">
-                                    <a href="#" className="search-toggle dropdown-toggle btn border add-btn"
+                                    {/* <a href="#" className="search-toggle dropdown-toggle btn border add-btn"
                                         id="dropdownMenuButton02" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">
                                         <img src="../assets/images/small/flag-01.png" alt="img-flag"
                                             className="img-fluid image-flag mr-2" />En
-                                    </a>
+                                    </a> */}
                                     <div className="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton2">
                                         <div className="card shadow-none m-0">
                                             <div className="card-body p-3">
@@ -55,12 +53,12 @@ export default function Navbar() {
                                         </div>
                                     </div>
                                 </li>
-                                <li>
+                                {/* <li>
                                     <a href="#" className="btn border add-btn shadow-none mx-2 d-none d-md-block"
                                         data-toggle="modal" data-target="#new-order"><i className="las la-plus mr-2"></i>New
                                         Order</a>
-                                </li>
-                                <li className="nav-item nav-icon search-content">
+                                </li> */}
+                                {/* <li className="nav-item nav-icon search-content">
                                     <a href="#" class="search-toggle rounded" id="dropdownSearch" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
                                         <i className="ri-search-line"></i>
@@ -75,8 +73,8 @@ export default function Navbar() {
                                             </div>
                                         </form>
                                     </div>
-                                </li>
-                                <li className="nav-item nav-icon dropdown">
+                                </li> */}
+                                {/* <li className="nav-item nav-icon dropdown">
                                     <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton2"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -157,7 +155,7 @@ export default function Navbar() {
                                             </div>
                                         </div>
                                     </div>
-                                </li>
+                                </li> */}
                                 <li className="nav-item nav-icon dropdown">
                                     <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
