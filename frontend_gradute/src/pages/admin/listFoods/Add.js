@@ -122,7 +122,7 @@ const CreateFoods = (props) => {
                                             {renderForm()}
                                             <div className="col-md-12 mt-3">
                                                 <div className="form-group">
-                                                    <label>Tên thể loại</label>
+                                                    <label>Tên món</label>
                                                     <input type="text" class="form-control" placeHolder="Điền tên món ở đây !" name="name" id="name"
                                                         required onChange={getName} value={name}/>
                                                     <div className="help-block with-errors">
