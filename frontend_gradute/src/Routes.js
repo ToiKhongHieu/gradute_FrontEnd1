@@ -8,6 +8,8 @@ import ListAllTables from "./pages/admin/listTables/list";
 import Dashboard from "./pages/admin/Dashboard";
 import ListCategoryTable from "./pages/admin/CategoryTable/list";
 import AddCategoryTable from "./pages/admin/CategoryTable/Add";
+import ListAllFoods from "./pages/admin/listFoods/list";
+import CreateFoods from "./pages/admin/listFoods/Add";
 
 export default function Routess(props) {
     
@@ -29,6 +31,10 @@ export default function Routess(props) {
                     <Route exact path="/" element={<Dashboard {...props} />} />categorytableadd                 
                     <Route exact path="/admin/ListTables" element={<ListAllTables {...props} />} />
                     <Route exact path="/" element={<Dashboard {...props} />} />
+                    <Route exact path="/admin/FoodsAdd" element={<CreateFoods {...props} />} />
+                    <Route exact path="/admin/FoodssAdd:/id" element={<CreateFoods {...props} />} />
+                    <Route  path="/admin/ListFoods" element={<ListAllFoods {...props} />}/>
+
                 </Routes>
             </AdminLayout>
         </BrowserRouter>
