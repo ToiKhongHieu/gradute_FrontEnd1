@@ -54,7 +54,7 @@ export default function ListAllFoods(props) {
             if (props.value == "Ẩn") return (<td className="col d-flex justify-content-center text-muted">{props.value}</td>)
         }
     },{
-        Header: props => <th className="col d-flex justify-content-center text-info">Desccription</th>,
+        Header: props => <th className="col d-flex justify-content-center text-info">Mô Tả</th>,
         accessor: 'description',
         Cell: props => <td className="col d-flex justify-content-center">{props.value}</td>
     },{
