@@ -43,7 +43,7 @@ export default function ListAllTables(props) {
                 setTables(newTable);
               } catch (error) {
                 console.log(error);
-              }
+              } 
               alert("Đã xóa bàn #" + id);
         }
     }
@@ -63,7 +63,7 @@ export default function ListAllTables(props) {
         , {
             Header: props => <th className="col d-flex justify-content-center text-info">Tên thể loại</th>,
             accessor: 'categoryId',
-            Cell: props => <td>{props.value}</td> 
+            Cell: props => <td>{props.value.id}</td> 
         }
         , {
             Header: props => <th className="col d-flex justify-content-center text-info">Ngày tạo</th>,
