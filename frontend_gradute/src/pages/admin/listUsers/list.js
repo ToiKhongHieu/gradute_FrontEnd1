@@ -129,7 +129,7 @@ export default function ListAllUsers(props) {
                                     <h4 className="mb-3">Danh sách người dùng</h4>
                                     <p class="mb-0">Xem danh người dùng tại đây</p>
                                 </div>
-                                <a href="/admin/categoryFoodAdd" className="btn btn-primary add-list"><i
+                                <a href="/admin/addUsers" className="btn btn-primary add-list"><i
                                     className="las la-plus mr-3"></i>Thêm người dùng</a>
                             </div>
                         </div>

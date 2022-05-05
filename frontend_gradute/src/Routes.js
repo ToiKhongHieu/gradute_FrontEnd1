@@ -10,6 +10,7 @@ import ListCategoryTable from "./pages/admin/CategoryTable/list";
 import AddCategoryTable from "./pages/admin/CategoryTable/Add";
 import ListAllFoods from "./pages/admin/listFoods/list";
 import CreateFoods from "./pages/admin/listFoods/Add";
+import CreateUsers from "./pages/admin/listUsers/Add";
 
 export default function Routess(props) {
 
@@ -27,6 +28,8 @@ export default function Routess(props) {
                    <Route exact path="/admin/categorytableadd" element={<AddCategoryTable {...props} />} />
                     {/*user */}
                     <Route exact path="/admin/ListUsers" element={<ListAllUsers {...props} />} />
+                    <Route exact path="/admin/addUsers" element={<CreateUsers {...props} />} />
+                    <Route exact path="/admin/addUsers/:id" element={<CreateUsers {...props} />} />
                     {/* bàn */}
                     <Route exact path="/admin/TablesAdd" element={<CreateTables {...props} />} />
                     <Route exact path="/admin/TablesAdd/:id" element={<CreateTables {...props} />} />
