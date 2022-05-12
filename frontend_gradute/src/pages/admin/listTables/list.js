@@ -116,7 +116,7 @@ export default function ListAllTables(props) {
                                     <h4 className="mb-3">Danh sách bàn</h4>
                                     <p class="mb-0">Xem danh sách bàn tại đây</p>
                                 </div>
-                                <a href="/admin/categoryFoodAdd" className="btn btn-primary add-list"><i
+                                <a href="/admin/TablesAdd" className="btn btn-primary add-list"><i
                                     className="las la-plus mr-3"></i>Thêm bàn</a>
                             </div>
                         </div>
