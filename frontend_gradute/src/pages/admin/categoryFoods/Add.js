@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import { AddCategoryFoodd, getOneCategoryFood } from "../../../api/CategoryFoodsAPI";
 import { useParams } from "react-router-dom";
 const AddCategoryFood = (props) => {
-    const [inputMultipart, setInputMultipart] = useState(true);
-    const changeMultipart = () => {
-        setInputMultipart(!inputMultipart);
-    }
+    // const [inputMultipart, setInputMultipart] = useState(true);
+    // const changeMultipart = () => {
+    //     setInputMultipart(!inputMultipart);
+    // }
     const history = useNavigate();
     const [createdAt , setcreatedAt] = useState();
     const [btnTile,setBtnTile] = useState("Thêm thể loại");
@@ -68,32 +68,32 @@ const AddCategoryFood = (props) => {
         setStatus("sẵn sàng");
         setDescription("");
     }
-    const renderForm = () => {
-        if (inputMultipart) {
-            return (
-                <div className="col-md-12">
-                    <div className="form-group">
-                        <label>Chọn Ảnh</label>
-                        <input type="file" className="form-control image-file" name="image" id="image"
-                            accept="../image/*"
-                            required />
-                        <a className="text-info" onClick={() => changeMultipart()}>hoặc thêm link ảnh</a>
-                    </div>
-                </div>
-            )
-        } if (!inputMultipart) {
-            return (
-                <div className="col-md-12">
-                    <div className="form-group">
-                        <label>Thêm link Ảnh</label>
-                        <input type="text" className="form-control image-file" name="image" id="image" onChange={getImage} required value={image} />
-                        <a className="text-info" onClick={() => changeMultipart()}>hoặc chọn ảnh từ máy</a>
-                    </div>
-                </div>
-            )
-        }
-    }
-
+    // const renderForm = () => {
+    //     if (inputMultipart) {
+    //         return (
+    //             <div className="col-md-12">
+    //                 <div className="form-group">
+    //                     <label>Chọn Ảnh</label>
+    //                     <input type="file" className="form-control image-file" name="image" id="image"
+    //                         accept="../image/*"
+    //                         required />
+    //                     <a className="text-info" onClick={() => changeMultipart()}>hoặc thêm link ảnh</a>
+    //                 </div>
+    //             </div>
+    //         )
+    //     } if (!inputMultipart) {
+    //         return (
+    //             <div className="col-md-12">
+    //                 <div className="form-group">
+    //                     <label>Thêm link Ảnh</label>
+    //                     <input type="text" className="form-control image-file" name="image" id="image" onChange={getImage} required value={image} />
+    //                     <a className="text-info" onClick={() => changeMultipart()}>hoặc chọn ảnh từ máy</a>
+    //                 </div>
+    //             </div>
+    //         )
+    //     }
+    // }
+    console.log(image) 
     return (
             <div className="content-page">
                 <div className="container-fluid add-form-list">
@@ -109,7 +109,11 @@ const AddCategoryFood = (props) => {
                                 <div className="card-body">
                                     <form onSubmit={handleSubmit} data-toggle="validator">
                                         <div className="row">
-                                            {renderForm()}
+                                            {/* {renderForm()} */}
+                                            <label>
+                                            Chọn ảnh:
+                                            <input type="file" name="image" onChange={getImage}/>
+                                            </label>
                                             <div className="col-md-12 mt-3">
                                                 <div className="form-group">
                                                     <label>Tên thể loại</label>
