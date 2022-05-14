@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { AddCategoryFoodd, getOneCategoryFood } from "../../../api/CategoryFoodsAPI";
 import { useParams } from "react-router-dom";
 const AddCategoryFood = (props) => {
+
     const [inputMultipart, setInputMultipart] = useState(true);
     const changeMultipart = () => {
         setInputMultipart(!inputMultipart);
@@ -131,6 +132,7 @@ const AddCategoryFood = (props) => {
                                                 <input type="text" class="form-control" placeHolder="Điền tên thể loại ở đây !" name="name" id="name"
                                                     required onChange={getName} value={name} />
                                                 <div className="help-block with-errors">
+
                                                 </div>
                                             </div>
                                         </div>
