@@ -1,9 +1,10 @@
-
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { AddTables, getIdTables } from "../../../api/TablesAPI";
 import { useParams } from "react-router-dom";
 import { getAllCategoryTable } from "../../../api/CategoryTableAPI";
 const CreateTables = (props) => {
+    const history = useNavigate();
     const [createdAt, setcreatedAt] = useState();
     const [btnTile, setBtnTile] = useState("Thêm bàn");
     const { id } = useParams();
@@ -14,8 +15,6 @@ const CreateTables = (props) => {
     useEffect(() => {
         const getTables = async () => {
             try {
-                const { data } = await getAllCategoryTable();
-                await setCategoryTable(data);
                 if (id) {
                     const { data } = await getIdTables(id);
                     setBtnTile("Sửa bàn");
@@ -23,7 +22,7 @@ const CreateTables = (props) => {
                     setName(data.name);
                     setStatus(data.status);
                     setcategoryId(data.categoryId.id);
-                    console.log("haha " ,data);
+                    console.log("haha ", data);
                 }
             } catch (error) {
                 console.log("Error Table " + error);
@@ -47,7 +46,6 @@ const CreateTables = (props) => {
         setName(e.target.value);
     }
     const getStatus = (e) => {
-        console.log(e.target.value);
         setStatus(e.target.value);
     }
     const getcategoryId = async (e) => {
@@ -63,6 +61,10 @@ const CreateTables = (props) => {
             alert("Thêm thành công bàn #" + data.id);
         }
         clearForm();
+        const check = window.confirm('Bạn có muốn về trang danh sách không ?');
+        if (check) {
+            history("/admin/ListTables");
+        }
     }
     const clearForm = () => {
         setName("");
@@ -98,25 +100,30 @@ const CreateTables = (props) => {
                                             <div className="form-group">
                                                 <label>Trạng thái</label>
                                                 <select name="status" className="form-control" onChange={getStatus} value={status}>
-                                                    <option className="text-success" value="Sẵn sàng">Sẵn sàng</option>
-                                                    <option className="text-secondary" value="Ẩn" >Ẩn</option>
+                                                    <option className="text-primary" value={null}>chọn</option>
+                                                    <option className="text-success" value="Đang sử dụng">Đang sử dụng</option>
+                                                    <option className="text-secondary" value="Trống" >Trống</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Thể loại bàn</label>
-                                            <select className="form-control form-control-sm mb-3" onChange={getcategoryId} value={categoryId}>
-                                                <option className="text-primary" value={null}>Chọn</option>
-                                                {
-                                                    categoryTable.map((item) => (
-                                                        <option value={item.id}>{item.categoryName}</option>
-                                                    ))
-                                                }
-                                            </select>
+                                        <div className="col-md-12 mt-3" >
+                                            <div class="form-group">
+                                                <label>Thể loại bàn</label>
+                                                <select className="form-control form-control-sm mb-3" onChange={getcategoryId} value={categoryId}>
+                                                    <option className="text-primary" value={null}>Chọn</option>
+                                                    {
+                                                        categoryTable.map((item) => (
+                                                            <option value={item.id}>{item.name}</option>
+                                                        ))
+                                                    }
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div className='mt-3'>
                                     <button type="submit" className="btn btn-primary mr-2">{btnTile}</button>
                                     <button type="reset" onClick={clearForm} className="btn btn-danger">Cài lại</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>

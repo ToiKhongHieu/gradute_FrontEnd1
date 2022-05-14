@@ -3,15 +3,17 @@ import { Link } from "react-router-dom";
 import { getAllCategoryFood, removeCategoryFood } from "../../../api/CategoryFoodsAPI";
 import ReactTable from 'react-table-6';
 import 'react-table-6/react-table.css';
+import Search from "../../../components/admin/Search";
 
 export default function ListCategoryFoods(props) {
     const [categories, setCategories] = useState([]);
+    const pageName = "categoryfood";
+    const status = ["Sẵn sàng","Ẩn"];
     useEffect(() => {
         const getCategory = async () => {
             try {
                 const { data } = await getAllCategoryFood();
-                setCategories(data);
-                console.log(data);
+                await setCategories(data);
             } catch (error) {
                 console.log("Error getCategories " + error);
             }
@@ -82,7 +84,6 @@ export default function ListCategoryFoods(props) {
     }
     ]
     const customTrGroupComponent = (props) => {
-        console.log("props", props);
         var extra_style = null;
         if (props.viewIndex % 2 != 0 && props.viewIndex) {
             extra_style = {
@@ -93,16 +94,19 @@ export default function ListCategoryFoods(props) {
             {props.children}
         </div>;
     }
+    const callbackFunction = (childData)=>{
+          setCategories(childData);
+    }
     return (
         <>
             <div className="content-page">
+                <Search data={pageName} status={status} parentCallback={callbackFunction}/>
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-lg-12">
                             <div className="d-flex flex-wrap align-items-center justify-content-between mb-4">
                                 <div>
                                     <h4 className="mb-3">Danh sách thể loại món</h4>
-                                    <p class="mb-0">Xem danh sách thể loại món tại đây</p>
                                 </div>
                                 <a href="/admin/categoryFoodAdd" className="btn btn-primary add-list"><i
                                     className="las la-plus mr-3"></i>Thêm thể loại món</a>

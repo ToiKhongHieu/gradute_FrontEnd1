@@ -1,82 +1,95 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAllFoods, removeFoods } from "../../../api/FoodsAPI";
+import { getAllVouchers, removeVoucher } from "../../../api/VoucherAPI";
 import ReactTable from 'react-table-6';
 import 'react-table-6/react-table.css';
 import Search from "../../../components/admin/Search";
 
-export default function ListAllFoods(props) {
-    const [foods, setfoods] = useState([]);
-    const pageName = "food";
-    const status = ["Sẵn sàng","Ẩn"];
+export default function ListVoucher(props) {
+    const [vouchers, setVouchers] = useState([]);
+    const status = ["Chưa phát hành","Hiện hành","Đã hết hạn"];
+    const pageName = "vouchers";
     useEffect(() => {
-        const getFoods = async () => {
+        const getVouchers = async () => {
             try {
-                const { data } = await getAllFoods();
-                await setfoods(data);
-                console.log(data);
+                const { data } = await getAllVouchers();
+                setVouchers(data);
             } catch (error) {
-                console.log("Error getFoods " + error);
+                console.log("Error getCategories " + error);
             }
         }
-        getFoods();
+        getVouchers();
     }, []);
 
-    const onRemoveCate = async (id) => {
-        const check = window.confirm('Bạn có chắc muốn xóa thể loại #' + id + " ?");
+    const onRemoveVoucher = async (id) => {
+        const check = window.confirm('Bạn có chắc muốn xóa voucher #' + id + " ?");
         if (check) {
             try {
-                await removeFoods(id);
-                const newProducts = foods.filter((item) => item.id !== id);
-                setfoods(newProducts);
+                await removeVoucher(id);
+                const newVouchers = vouchers.filter((item) => item.id !== id);
+                setVouchers(newVouchers);
             } catch (error) {
                 console.log(error);
             }
-            alert("Đã xóa món #" + id);
+            alert("Đã xóa voucher #" + id);
         }
     }
 
     const columns = [{
-        Header: props => <th className="col d-flex justify-content-center text-info"></th>,
-        accessor: 'url',
-        Cell: props => <td><img src={props.value} height="100" /></td>
+        Header: props => <th className="col d-flex justify-content-center text-info">Tiêu đề</th>,
+        accessor: 'title',
+        Cell: props =>  <td className="col d-flex justify-content-center">{props.value}</td>
     }, {
-        Header: props => <th className="col d-flex justify-content-center text-info">Tên món</th>,
-        accessor: 'name',
+        Header: props => <th className="col d-flex justify-content-center text-info">Nội dung</th>,
+        accessor: 'content',
+        Cell: props => <td className="col d-flex justify-content-center">{props.value}</td>
+    },  {
+        Header: props => <th className="col d-flex justify-content-center text-info">Mã</th>,
+        accessor: 'code',
         Cell: props => <td className="col d-flex justify-content-center">{props.value}</td>
     }, {
-        Header: props => <th className="col d-flex justify-content-center text-info">Tên thể loại</th>,
-        accessor: 'categoryId',
-        Cell: props => <td className="col d-flex justify-content-center">{props.value.name}</td>
+        Header: props => <th className="col d-flex justify-content-center text-info">Chiết khấu</th>,
+        accessor: 'discount',
+        Cell: props => <td className="col d-flex justify-content-center">{props.value}(%)</td>
     }, {
         Header: props => <th className="col d-flex justify-content-center text-info">Trạng thái</th>,
         accessor: 'status',
-        Cell: props => {
-            if (props.value == "Sẵn sàng") return (
-                <td className="col d-flex justify-content-center text-success">{props.value}</td>)
-            if (props.value == "Ẩn") return (<td className="col d-flex justify-content-center text-muted">{props.value}</td>)
+        Cell: props =>{
+            if(props.value === "Chưa phát hành"){ return <td className="col d-flex justify-content-center text-primary">{props.value}</td>}
+            if(props.value === "Hiện hành"){ return <td className="col d-flex justify-content-center text-success">{props.value}</td>}
+            if(props.value === "Đã hết hạn"){ return <td className="col d-flex justify-content-center text-muted">{props.value}</td>}
         }
-    }, {
-        Header: props => <th className="col d-flex justify-content-center text-info">Mô Tả</th>,
-        accessor: 'description',
+    },{
+        Header: props => <th className="col d-flex justify-content-center text-info">Số lượng</th>,
+        accessor: 'amount',
         Cell: props => <td className="col d-flex justify-content-center">{props.value}</td>
+    },
+    // {
+    //     Header: props => <th className="col d-flex justify-content-center text-info">Người tạo</th>,
+    //     accessor: 'users',
+    //     Cell: props => <td className="col d-flex justify-content-center">{props.value.username}</td>
+    // },
+    {
+        Header: props => <th className="col d-flex justify-content-center text-info">Ngày hiệu lực</th>,
+        accessor: 'starttime',
+        Cell: props => <td className="col d-flex justify-content-center">{props.value.split("T")[0]}</td>
     }, {
-        Header: props => <th className="col d-flex justify-content-center text-info">Giá</th>,
-        accessor: 'price',
-        Cell: props => <td className="col d-flex justify-content-center">{props.value}</td>
+        Header: props => <th className="col d-flex justify-content-center text-info">Ngày kết thúc</th>,
+        accessor: 'endtime',
+        Cell: props => <td className="col d-flex justify-content-center">{props.value.split("T")[0]}</td>
     },  {
         Header: props => <th className="col d-flex justify-content-center text-info">Hành động</th>,
         accessor: 'id',
         Cell: props => <td className="col d-flex justify-content-center">
             <Link
                 className="btn btn-primary btn-sm ms-1"
-                to={`/admin/FoodssAdd/${props.value}`}
+                to={`/admin/voucheradd/${props.value}`}
             >
                 Sửa
             </Link>
             <button
                 className="btn btn-danger btn-sm ms-1"
-                onClick={() => onRemoveCate(props.value)}
+                onClick={() => onRemoveVoucher(props.value)}
             >
                 Xóa
             </button>
@@ -95,9 +108,8 @@ export default function ListAllFoods(props) {
         </div>;
     }
     const callbackFunction = (childData)=>{
-        console.log("childData",childData);
-          setfoods(childData);
-    }
+        setVouchers(childData);
+  }
     return (
         <>
             <div className="content-page">
@@ -107,17 +119,17 @@ export default function ListAllFoods(props) {
                         <div className="col-lg-12">
                             <div className="d-flex flex-wrap align-items-center justify-content-between mb-4">
                                 <div>
-                                    <h4 className="mb-3">Danh sách món</h4>
-                                    <p class="mb-0">Xem danh sách món tại đây</p>
+                                    <h4 className="mb-3">Danh sách Vouchers</h4>
+                                    <p class="mb-0">Xem danh sách Vouchers tại đây</p>
                                 </div>
-                                <a href="/admin/FoodsAdd" className="btn btn-primary add-list"><i
-                                    className="las la-plus mr-3"></i>Thêm  món</a>
+                                <a href="/admin/voucheradd" className="btn btn-primary add-list"><i
+                                    className="las la-plus mr-3"></i>Thêm Voucher</a>
                             </div>
                         </div>
                         <div className="col-lg-12">
                             <div className="table-responsive rounded mb-3">
                                 <ReactTable
-                                    data={foods}
+                                    data={vouchers}
                                     columns={columns}
                                     defaultPageSize={5}
                                     pageSizeOptions={[5, 10, 15]}
