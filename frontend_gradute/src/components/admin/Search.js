@@ -30,7 +30,7 @@ export default function Search(props) {
         const newD2 = await newD1.filter((item) => item.status.indexOf(status) != -1);
         const newD3 = await newD2.filter((item) => item.code.indexOf(code) != -1);
         await setNew1(newD3);
-        if (discount && discount !== 0) {
+        if (discount && discount != 0) {
             const newD4 = await newD3.filter((item) => item.discount == discount);
             await setNew1(newD4);
         }
