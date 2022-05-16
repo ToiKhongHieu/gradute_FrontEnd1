@@ -4,79 +4,88 @@ import { Link } from "react-router-dom";
 import ReactTable from 'react-table-6';
 import 'react-table-6/react-table.css';
 import { getAllTables, getTableByCategory, removeTables } from "../../../api/TablesAPI";
+import Search from "../../../components/admin/Search";
 
 
 
 export default function ListAllTables(props) {
     const [Tables, setTables] = useState([]);
-    const {id} = useParams();
+    const pageName = "table";
+    const status = ["Đang sử dụng","Trống"];
+    const { id } = useParams();
 
     useEffect(() => {
         const getTables = async () => {
-            if(!id){
+            if (!id) {
                 try {
                     const { data } = await getAllTables();
                     setTables(data);
-                    console.log(data);
                 } catch (error) {
                     console.log("Error getTables " + error);
                 }
-            }else{
+            } else {
                 try {
-                    const { data } = await getTableByCategory();
+                    const { data } = await getTableByCategory(id);
                     setTables(data);
                     console.log(data);
                 } catch (error) {
                     console.log("Error getTables " + error);
                 }
             }
-            
+
         }
         getTables();
     }, []);
     const onremoveTables = async (id) => {
         const check = window.confirm('Bạn có chắc muốn xóa table #' + id + " ?");
-        if(check){
+        if (check) {
             try {
                 await removeTables(id);
                 const newTable = Tables.filter((item) => item.id !== id);
                 setTables(newTable);
-              } catch (error) {
+            } catch (error) {
                 console.log(error);
-              } 
-              alert("Đã xóa bàn #" + id);
+            }
+            alert("Đã xóa bàn #" + id);
         }
     }
     const columns = [{
-        Header: props => <th className="col d-flex justify-content-center text-info">ID</th>,
-            accessor: 'id' 
-        }, {
-            Header: props => <th className="col d-flex justify-content-center text-info">Tên</th>,
-            accessor: 'name',
-            Cell: props => <td>{props.value}</td> 
-        }
+        Header: props => <th className="text-info">ID</th>,
+        accessor: 'id',
+        cell: props => <td>{props.value}</td>
+    }, {
+        Header: props => <th className="col d-flex justify-content-center text-info">Tên</th>,
+        accessor: 'name',
+        Cell: props => <td>{props.value}</td>
+    }
         , {
-            Header: props => <th className="col d-flex justify-content-center text-info">Trạng thái</th>,
-            accessor: 'status',
-            Cell: props => <td>{props.value}</td> 
-        }
+        Header: props => <th className="col d-flex justify-content-center text-info">Trạng thái</th>,
+        accessor: 'status',
+        Cell: props => {
+            if(props.value == "Trống"){
+                return <td className="text-success">{props.value}</td>
+            }if(props.value == "Đang sử dụng"){
+                return <td className="text-danger">{props.value}</td>
+            }
+        } 
+    }
         , {
-            Header: props => <th className="col d-flex justify-content-center text-info">Tên thể loại</th>,
-            accessor: 'categoryId',
-            Cell: props => <td>{props.value.id}</td> 
-        }
+        Header: props => <th className="col d-flex justify-content-center text-info">Tên thể loại</th>,
+        accessor: 'categoryId',
+        Cell: props => <td>{props.value.name}</td>
+    }
         , {
-            Header: props => <th className="col d-flex justify-content-center text-info">Ngày tạo</th>,
-            accessor: 'createdAt' ,
-            Cell: props => <td className="col d-flex justify-content-center">{props.value.split("T")[0]}</td> 
-        }, {
-            Header: props => <th className="col d-flex justify-content-center text-info">Ngày sửa</th>,
-            accessor: 'updatedAt',
-            Cell: props => <td className="col d-flex justify-content-center">{props.value.split("T")[0] }</td>
-        },{
-            Header: props => <th className="col d-flex text-info">Hành động</th>,
-            accessor: 'id',
-            Cell: props => <td className="text-right justify-content-center">
+        Header: props => <th className="col d-flex justify-content-center text-info">Ngày tạo</th>,
+        accessor: 'createdAt',
+        Cell: props => <td className="col d-flex justify-content-center">{props.value.split("T")[0]}</td>
+    }, {
+        Header: props => <th className="col d-flex justify-content-center text-info">Ngày sửa</th>,
+        accessor: 'updatedAt',
+        Cell: props => <td className="col d-flex justify-content-center">{props.value.split("T")[0]}</td>
+    }, {
+        Header: props => <th className="col d-flex justify-content-center text-info">Hành động</th>,
+        accessor: 'id',
+        Cell: props => <td className="col d-flex justify-content-center">
             <Link
                 className="btn btn-primary btn-sm ms-1"
                 to={`/admin/TablesAdd/${props.value}`}
@@ -90,24 +99,27 @@ export default function ListAllTables(props) {
                 Xóa
             </button>
         </td>
-        }
+    }
     ]
     const customTrGroupComponent = (props) => {
-        console.log("props",props);
+        console.log("table ", props);
         var extra_style = null;
         if (props.viewIndex % 2 != 0 && props.viewIndex) {
-          extra_style = {
-            backgroundColor: '#F0FFFO'
-          }
+            extra_style = {
+                backgroundColor: '#F0FFF0'
+            }
         }
         return <div className='rt-tr-group' style={extra_style}>
-          {props.children} 
-        </div>;
-      }
-
+            {props.children}
+        </div>; 
+    }
+    const callbackFunction = (childData)=>{
+        setTables(childData);
+  }
     return (
         <>
             <div className="content-page">
+            <Search data={pageName} status={status} parentCallback={callbackFunction}/>
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-lg-12">
@@ -120,13 +132,13 @@ export default function ListAllTables(props) {
                                     className="las la-plus mr-3"></i>Thêm bàn</a>
                             </div>
                         </div>
-                        <div className="col-lg-12 mt-3">
+                        <div className="col-lg-12">
                             <div className="table-responsive rounded mb-3">
                                 <ReactTable
                                     data={Tables}
                                     columns={columns}
                                     defaultPageSize={5}
-                                    pageSizeOptions = {[5,10,15]}  
+                                    pageSizeOptions={[5, 10, 15]}
                                     getTrGroupProps={(state, rowInfo, column, instance) => rowInfo}
                                     TrGroupComponent={customTrGroupComponent}
                                 />

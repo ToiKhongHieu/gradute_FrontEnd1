@@ -6,7 +6,7 @@ const AddCategoryTable = (props) => {
     const [createdAt , setcreatedAt] = useState();
     const [btnTile,setBtnTile] = useState("Thêm thể loại bàn");
     const {id} = useParams();
-    const [categoryName, setCategoryName] = useState("");
+    const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const history = useNavigate();
     useEffect(() => {
@@ -16,7 +16,7 @@ const AddCategoryTable = (props) => {
                     const { data } = await getOneCategoryTable(id);
                     setBtnTile("Sửa thể loại bàn");
                     setcreatedAt(data.createdAt);
-                    setCategoryName(data.categoryName);
+                    setName(data.name);
                     setDescription(data.description);
                 }
             } catch (error) {
@@ -26,14 +26,14 @@ const AddCategoryTable = (props) => {
         getCategory();
     }, []);
     const getName = (e) => {
-        setCategoryName(e.target.value);
+        setName(e.target.value);
     }
     const getDescription = (e) => {
         setDescription(e.target.value);
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const data1 = { id  , categoryName  , description , createdAt};
+        const data1 = { id  , name  , description , createdAt};
         const {data} = await AddCategoryTablee(data1);
         if(id){
             alert("Sửa thành công thể loại bàn #" + data.id);
@@ -47,7 +47,7 @@ const AddCategoryTable = (props) => {
         }
     }
     const clearForm = () => {
-        setCategoryName("");
+        setName("");
         setDescription("");
     }
     return (
@@ -69,7 +69,7 @@ const AddCategoryTable = (props) => {
                                                 <div className="form-group">
                                                     <label>Tên thể loại bàn</label>
                                                     <input type="text" class="form-control" placeHolder="Điền tên thể loại bàn ở đây !" name="name" id="name"
-                                                        required onChange={getName} value={categoryName}/>
+                                                        required onChange={getName} value={name}/>
                                                     <div className="help-block with-errors">
                                                     </div>
                                                 </div>
