@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch} from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import AdminLayout from "./layouts/AdminLayout";
 import AddCategoryFood from "./pages/admin/categoryFoods/Add";
 import CreateTables from "./pages/admin/listTables/Add";
@@ -15,6 +15,8 @@ import ListVoucher from "./pages/admin/Vouchers/list";
 import CreateVoucher from "./pages/admin/Vouchers/Add";
 import Signin from "./pages/admin/signIn";
 import AdminRoute from "./auth/adminRoute";
+import ListAllPost from "./pages/admin/PostAdmin/list";
+import CreatePost from "./pages/admin/PostAdmin/Add";
 
 export default function Routess(props) {
 
@@ -52,10 +54,12 @@ export default function Routess(props) {
                         <Route exact path="/admin/voucheradd"><CreateVoucher {...props} /></Route>
                         <Route exact path="/admin/voucheradd/:id"><CreateVoucher {...props} /></Route>
                         <Route path="/admin/listvouchers"><ListVoucher {...props} /></Route>
+                        <Route exact path="/admin/Post"><ListAllPost {...props} /></Route>
+                        <Route exact path="/admin/addPost"><CreatePost {...props} /></Route>
+                        <Route exact path="/admin/addPost/:id"><CreatePost {...props} /></Route>
                     </Switch>
                 </AdminLayout>
             </AdminRoute>
-        </BrowserRouter>
-
+            </BrowserRouter>
     )
 }
