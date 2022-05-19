@@ -1,64 +1,66 @@
+import { signout } from "../../api/authAPI";
+import {Redirect} from "react-router-dom";
 export default function Navbar() {
     return (
         <>
-         <div className="iq-top-navbar">
-            <div className="iq-navbar-custom">
-                <nav className="navbar navbar-expand-lg navbar-light p-0">
-                    <div className="iq-navbar-logo d-flex align-items-center justify-content-between">
-                        <i className="ri-menu-line wrapper-menu"></i>
-                        <a href="../backend/index.html" className="header-logo">
-                            <img src="../assets/images/logo.png" class="img-fluid rounded-normal" alt="logo" />
-                        </a>
-                    </div>
-                    <div className="iq-search-bar device-search">
-                        {/* <form action="#" className="searchbox">
+            <div className="iq-top-navbar">
+                <div className="iq-navbar-custom">
+                    <nav className="navbar navbar-expand-lg navbar-light p-0">
+                        <div className="iq-navbar-logo d-flex align-items-center justify-content-between">
+                            <i className="ri-menu-line wrapper-menu"></i>
+                            <a href="../backend/index.html" className="header-logo">
+                                <img src="../assets/images/logo.png" class="img-fluid rounded-normal" alt="logo" />
+                            </a>
+                        </div>
+                        <div className="iq-search-bar device-search">
+                            {/* <form action="#" className="searchbox">
                             <a className="search-link" href="#"><i class="ri-search-line"></i></a>
                             <input type="text" class="text search-input" placeHolder="Search here..." />
                         </form> */}
-                    </div>
-                    <div className="d-flex align-items-center">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-label="Toggle navigation">
-                            <i className="ri-menu-3-line"></i>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul className="navbar-nav ml-auto navbar-list align-items-center">
-                                <li className="nav-item nav-icon dropdown">
-                                    {/* <a href="#" className="search-toggle dropdown-toggle btn border add-btn"
+                        </div>
+                        <div className="d-flex align-items-center">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-label="Toggle navigation">
+                                <i className="ri-menu-3-line"></i>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul className="navbar-nav ml-auto navbar-list align-items-center">
+                                    <li className="nav-item nav-icon dropdown">
+                                        {/* <a href="#" className="search-toggle dropdown-toggle btn border add-btn"
                                         id="dropdownMenuButton02" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">
                                         <img src="../assets/images/small/flag-01.png" alt="img-flag"
                                             className="img-fluid image-flag mr-2" />En
                                     </a> */}
-                                    <div className="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                        <div className="card shadow-none m-0">
-                                            <div className="card-body p-3">
-                                                <a class="iq-sub-card" href="#"><img
+                                        <div className="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                            <div className="card shadow-none m-0">
+                                                <div className="card-body p-3">
+                                                    <a class="iq-sub-card" href="#"><img
                                                         src="../assets/images/small/flag-02.png" alt="img-flag"
                                                         className="img-fluid mr-2" />French</a>
-                                                <a class="iq-sub-card" href="#"><img
+                                                    <a class="iq-sub-card" href="#"><img
                                                         src="../assets/images/small/flag-03.png" alt="img-flag"
                                                         className="img-fluid mr-2" />Spanish</a>
-                                                <a class="iq-sub-card" href="#"><img
+                                                    <a class="iq-sub-card" href="#"><img
                                                         src="../assets/images/small/flag-04.png" alt="img-flag"
                                                         className="img-fluid mr-2" />Italian</a>
-                                                <a class="iq-sub-card" href="#"><img
+                                                    <a class="iq-sub-card" href="#"><img
                                                         src="../assets/images/small/flag-05.png" alt="img-flag"
                                                         className="img-fluid mr-2" />German</a>
-                                                <a class="iq-sub-card" href="#"><img
+                                                    <a class="iq-sub-card" href="#"><img
                                                         src="../assets/images/small/flag-06.png" alt="img-flag"
                                                         className="img-fluid mr-2" />Japanese</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
-                                {/* <li>
+                                    </li>
+                                    {/* <li>
                                     <a href="#" className="btn border add-btn shadow-none mx-2 d-none d-md-block"
                                         data-toggle="modal" data-target="#new-order"><i className="las la-plus mr-2"></i>New
                                         Order</a>
                                 </li> */}
-                                {/* <li className="nav-item nav-icon search-content">
+                                    {/* <li className="nav-item nav-icon search-content">
                                     <a href="#" class="search-toggle rounded" id="dropdownSearch" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
                                         <i className="ri-search-line"></i>
@@ -74,7 +76,7 @@ export default function Navbar() {
                                         </form>
                                     </div>
                                 </li> */}
-                                {/* <li className="nav-item nav-icon dropdown">
+                                    {/* <li className="nav-item nav-icon dropdown">
                                     <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton2"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -156,134 +158,142 @@ export default function Navbar() {
                                         </div>
                                     </div>
                                 </li> */}
-                                <li className="nav-item nav-icon dropdown">
-                                    <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" className="feather feather-bell">
-                                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                                        </svg>
-                                        <span className="bg-primary "></span>
-                                    </a>
-                                    <div className="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <div className="card shadow-none m-0">
-                                            <div className="card-body p-0 ">
-                                                <div className="cust-title p-3">
-                                                    <div className="d-flex align-items-center justify-content-between">
-                                                        <h5 className="mb-0">Notifications</h5>
-                                                        <a class="badge badge-primary badge-card" href="#">3</a>
+                                    <li className="nav-item nav-icon dropdown">
+                                        <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" className="feather feather-bell">
+                                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                                            </svg>
+                                            <span className="bg-primary "></span>
+                                        </a>
+                                        <div className="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <div className="card shadow-none m-0">
+                                                <div className="card-body p-0 ">
+                                                    <div className="cust-title p-3">
+                                                        <div className="d-flex align-items-center justify-content-between">
+                                                            <h5 className="mb-0">Notifications</h5>
+                                                            <a class="badge badge-primary badge-card" href="#">3</a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="px-3 pt-0 pb-0 sub-card">
-                                                    <a href="#" className="iq-sub-card">
-                                                        <div
-                                                            className="media align-items-center cust-card py-3 border-bottom">
-                                                            <div className="">
-                                                                <img className="avatar-50 rounded-small"
-                                                                    src="../assets/images/user/01.jpg" alt="01" />
-                                                            </div>
-                                                            <div className="media-body ml-3">
-                                                                <div
-                                                                    className="d-flex align-items-center justify-content-between">
-                                                                    <h6 className="mb-0">Emma Watson</h6>
-                                                                    <small className="text-dark"><b>12 : 47 pm</b></small>
+                                                    <div className="px-3 pt-0 pb-0 sub-card">
+                                                        <a href="#" className="iq-sub-card">
+                                                            <div
+                                                                className="media align-items-center cust-card py-3 border-bottom">
+                                                                <div className="">
+                                                                    <img className="avatar-50 rounded-small"
+                                                                        src="../assets/images/user/01.jpg" alt="01" />
                                                                 </div>
-                                                                <small className="mb-0">Lorem ipsum dolor sit amet</small>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a href="#" className="iq-sub-card">
-                                                        <div
-                                                            className="media align-items-center cust-card py-3 border-bottom">
-                                                            <div className="">
-                                                                <img className="avatar-50 rounded-small"
-                                                                    src="../assets/images/user/02.jpg" alt="02" />
-                                                            </div>
-                                                            <div className="media-body ml-3">
-                                                                <div
-                                                                    className="d-flex align-items-center justify-content-between">
-                                                                    <h6 className="mb-0">Ashlynn Franci</h6>
-                                                                    <small className="text-dark"><b>11 : 30 pm</b></small>
+                                                                <div className="media-body ml-3">
+                                                                    <div
+                                                                        className="d-flex align-items-center justify-content-between">
+                                                                        <h6 className="mb-0">Emma Watson</h6>
+                                                                        <small className="text-dark"><b>12 : 47 pm</b></small>
+                                                                    </div>
+                                                                    <small className="mb-0">Lorem ipsum dolor sit amet</small>
                                                                 </div>
-                                                                <small className="mb-0">Lorem ipsum dolor sit amet</small>
                                                             </div>
-                                                        </div>
-                                                    </a>
-                                                    <a href="#" className="iq-sub-card">
-                                                        <div className="media align-items-center cust-card py-3">
-                                                            <div className="">
-                                                                <img className="avatar-50 rounded-small"
-                                                                    src="../assets/images/user/03.jpg" alt="03" />
-                                                            </div>
-                                                            <div className="media-body ml-3">
-                                                                <div
-                                                                    className="d-flex align-items-center justify-content-between">
-                                                                    <h6 className="mb-0">Kianna Carder</h6>
-                                                                    <small className="text-dark"><b>11 : 21 pm</b></small>
+                                                        </a>
+                                                        <a href="#" className="iq-sub-card">
+                                                            <div
+                                                                className="media align-items-center cust-card py-3 border-bottom">
+                                                                <div className="">
+                                                                    <img className="avatar-50 rounded-small"
+                                                                        src="../assets/images/user/02.jpg" alt="02" />
                                                                 </div>
-                                                                <small className="mb-0">Lorem ipsum dolor sit amet</small>
+                                                                <div className="media-body ml-3">
+                                                                    <div
+                                                                        className="d-flex align-items-center justify-content-between">
+                                                                        <h6 className="mb-0">Ashlynn Franci</h6>
+                                                                        <small className="text-dark"><b>11 : 30 pm</b></small>
+                                                                    </div>
+                                                                    <small className="mb-0">Lorem ipsum dolor sit amet</small>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <a className="right-ic btn btn-primary btn-block position-relative p-2"
-                                                    href="#" role="button">
-                                                    View All
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li className="nav-item nav-icon dropdown caption-content">
-                                    <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton4"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img src="../assets/images/user/1.png" class="img-fluid rounded" alt="user" />
-                                    </a>
-                                    <div className="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <div className="card shadow-none m-0">
-                                            <div className="card-body p-0 text-center">
-                                                <div className="media-body profile-detail text-center">
-                                                    <img src="../assets/images/page-img/profile-bg.jpg" alt="profile-bg"
-                                                        className="rounded-top img-fluid mb-4" />
-                                                    <img src="../assets/images/user/1.png" alt="profile-img"
-                                                        className="rounded profile-img img-fluid avatar-70" />
-                                                </div>
-                                                <div className="p-3">
-                                                    <h5 className="mb-1">JoanDuo@property.com</h5>
-                                                    <p className="mb-0">Since 10 march, 2020</p>
-                                                    <div className="d-flex align-items-center justify-content-center mt-3">
-                                                        <a href="../app/user-profile.html"
-                                                            className="btn border mr-2">Profile</a>
-                                                        <a href="auth-sign-in.html" className="btn border">Sign Out</a>
+                                                        </a>
+                                                        <a href="#" className="iq-sub-card">
+                                                            <div className="media align-items-center cust-card py-3">
+                                                                <div className="">
+                                                                    <img className="avatar-50 rounded-small"
+                                                                        src="../assets/images/user/03.jpg" alt="03" />
+                                                                </div>
+                                                                <div className="media-body ml-3">
+                                                                    <div
+                                                                        className="d-flex align-items-center justify-content-between">
+                                                                        <h6 className="mb-0">Kianna Carder</h6>
+                                                                        <small className="text-dark"><b>11 : 21 pm</b></small>
+                                                                    </div>
+                                                                    <small className="mb-0">Lorem ipsum dolor sit amet</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
                                                     </div>
+                                                    <a className="right-ic btn btn-primary btn-block position-relative p-2"
+                                                        href="#" role="button">
+                                                        View All
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
-                            </ul>
+                                    </li>
+                                    <li className="nav-item nav-icon dropdown caption-content">
+                                        <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton4"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <img src="../assets/images/user/1.png" class="img-fluid rounded" alt="user" />
+                                        </a>
+                                        <div className="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <div className="card shadow-none m-0">
+                                                <div className="card-body p-0 text-center">
+                                                    <div className="media-body profile-detail text-center">
+                                                        <img src="../assets/images/page-img/profile-bg.jpg" alt="profile-bg"
+                                                            className="rounded-top img-fluid mb-4" />
+                                                        <img src="../assets/images/user/1.png" alt="profile-img"
+                                                            className="rounded profile-img img-fluid avatar-70" />
+                                                    </div>
+                                                    <div className="p-3">
+                                                        <h5 className="mb-1">JoanDuo@property.com</h5>
+                                                        <div className="d-flex align-items-center justify-content-center mt-3">
+                                                            <a href="../app/user-profile.html"
+                                                                className="btn border mr-2">Profile</a>
+                                                            <a href="auth-sign-in.html" className="btn border" onClick={() =>
+                                                                signout(() => {
+                                                                    <Redirect
+                                                                    to={{
+                                                                      pathname: "/login"
+                                                                    }}
+                                                                  />
+                                                                })
+                                                            }>Sign Out</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </nav>
+                    </nav>
+                </div>
             </div>
-        </div>
-        <div class="modal fade" id="new-order" tabIndex="-1" role="dialog" aria-hidden="true">
-            <div className="modal-dialog modal-dialog-centered" role="document">
-                <div className="modal-content">
-                    <div className="modal-body">
-                        <div className="popup text-left">
-                            <h4 className="mb-3">New Order</h4>
-                            <div className="content create-workform bg-body">
-                                <div className="pb-3">
-                                    <label className="mb-2">Email</label>
-                                    <input type="text" class="form-control" placeHolder="Enter Name or Email" />
-                                </div>
-                                <div className="col-lg-12 mt-4">
-                                    <div className="d-flex flex-wrap align-items-ceter justify-content-center">
-                                        <div className="btn btn-primary mr-4" data-dismiss="modal">Cancel</div>
-                                        <div className="btn btn-outline-primary" data-dismiss="modal">Create</div>
+            <div class="modal fade" id="new-order" tabIndex="-1" role="dialog" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-content">
+                        <div className="modal-body">
+                            <div className="popup text-left">
+                                <h4 className="mb-3">New Order</h4>
+                                <div className="content create-workform bg-body">
+                                    <div className="pb-3">
+                                        <label className="mb-2">Email</label>
+                                        <input type="text" class="form-control" placeHolder="Enter Name or Email" />
+                                    </div>
+                                    <div className="col-lg-12 mt-4">
+                                        <div className="d-flex flex-wrap align-items-ceter justify-content-center">
+                                            <div className="btn btn-primary mr-4" data-dismiss="modal">Cancel</div>
+                                            <div className="btn btn-outline-primary" data-dismiss="modal">Create</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -291,7 +301,6 @@ export default function Navbar() {
                     </div>
                 </div>
             </div>
-        </div>
         </>
     )
 }

@@ -22,26 +22,31 @@ export default function ListAllUsers(props) {
     }, []);
     const columns = [{
         Header: props => <th className="col d-flex justify-content-center text-info">ID</th>,
-            accessor: 'id' 
+            accessor: 'id' ,
+            Cell: props => <td className="col d-flex justify-content-center">{props.value}</td> 
         }, {
             Header: props => <th className="col d-flex justify-content-center text-info">UsersName</th>,
             accessor: 'username',
-            Cell: props => <td>{props.value}</td> 
+            Cell: props => <td className="col d-flex justify-content-center">{props.value}</td> 
         }
         , {
             Header: props => <th className="col d-flex justify-content-center text-info">Name</th>,
             accessor: 'name',
-            Cell: props => <td>{props.value}</td> 
+            Cell: props => <td className="col d-flex justify-content-center">{props.value}</td> 
         }
         , {
-            Header: props => <th className="col d-flex justify-content-center text-info">ISFEMALE</th>,
-            accessor: 'isfemale',
-            Cell: props => <td>{props.value}</td> 
+            Header: props => <th className="col d-flex justify-content-center text-info">Giới tính</th>,
+            accessor: 'female',
+            Cell: props => {
+                if (props.value) return (
+                    <td className="col d-flex justify-content-center text-info">Nam</td>)
+                if (!props.value) return (<td className="col d-flex justify-content-center text-danger">Nữ</td>)
+            }
         }
         , {
-            Header: props => <th className="col d-flex justify-content-center text-info">PHONENUMBER</th>,
-            accessor: 'phonenumber',
-            Cell: props => <td>{props.value}</td> 
+            Header: props => <th className="col d-flex justify-content-center text-info">Số điện thoại</th>,
+            accessor: 'phoneNumber',
+            Cell: props => <td className="col d-flex justify-content-center">{props.value}</td> 
         }
         , {
             Header: props => <th className="col d-flex justify-content-center text-info">CMND</th>,
@@ -51,7 +56,7 @@ export default function ListAllUsers(props) {
         , {
             Header: props => <th className="col d-flex justify-content-center text-info">DATEOFBIRTH</th>,
             accessor: 'dateofbirth',
-            Cell: props => <td>{props.value}</td> 
+            Cell: props => <td className="col d-flex justify-content-center">{props.value.split("T")[0]}</td> 
         }
         , {
             Header: props => <th className="col d-flex justify-content-center text-info">ADDRESS</th>,
@@ -60,16 +65,16 @@ export default function ListAllUsers(props) {
         }
         , {
             Header: props => <th className="col d-flex justify-content-center text-info">EMAIL</th>,
-            accessor: 'eamil',
+            accessor: 'email',
             Cell: props => <td>{props.value}</td> 
         }
         , {
-            Header: props => <th className="col d-flex justify-content-center text-info">ROLE</th>,
+            Header: props => <th className="col d-flex justify-content-center text-info">Quyền</th>,
             accessor: 'role',
-            Cell: props => <td>{props.value}</td> 
+            Cell: props => <td className="col d-flex justify-content-center">{props.value}</td> 
         }
         , {
-            Header: props => <th className="col d-flex justify-content-center text-info">SALARY</th>,
+            Header: props => <th className="col d-flex justify-content-center text-info">Lương</th>,
             accessor: 'salary',
             Cell: props => <td>{props.value}</td> 
         }
@@ -81,7 +86,11 @@ export default function ListAllUsers(props) {
         , {
             Header: props => <th className="col d-flex justify-content-center text-info">CONFIRMED</th>,
             accessor: 'confirmed',
-            Cell: props => <td>{props.value}</td> 
+            Cell: props => {
+                if (props.value) return (
+                    <td className="col d-flex justify-content-center text-success">Đã xác nhận</td>)
+                if (!props.value) return (<td className="col d-flex justify-content-center text-info">Chờ xử lý</td>)
+            }
         }
         , {
             Header: props => <th className="col d-flex justify-content-center text-info">Ngày tạo</th>,

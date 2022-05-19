@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Switch} from "react-router-dom";
 import AdminLayout from "./layouts/AdminLayout";
 import AddCategoryFood from "./pages/admin/categoryFoods/Add";
 import CreateTables from "./pages/admin/listTables/Add";
@@ -11,48 +11,51 @@ import AddCategoryTable from "./pages/admin/CategoryTable/Add";
 import ListAllFoods from "./pages/admin/listFoods/list";
 import CreateFoods from "./pages/admin/listFoods/Add";
 import CreateUsers from "./pages/admin/listUsers/Add";
-import AdminRoute from "./auth/adminRoute";
 import ListVoucher from "./pages/admin/Vouchers/list";
 import CreateVoucher from "./pages/admin/Vouchers/Add";
-import Search from "./components/admin/Search";
+import Signin from "./pages/admin/signIn";
+import AdminRoute from "./auth/adminRoute";
 
 export default function Routess(props) {
 
     return (
         <BrowserRouter>
-            <AdminLayout>
-                <Routes>
-                    {/*loại món */}
-                    <Route exact path="/admin/categoryFoods" element={<ListCategoryFoods {...props} />} />
-                    <Route exact path="/admin/categoryFoodAdd" element={<AddCategoryFood {...props} />} />
-                    <Route exact path="/admin/CategoryFoodEdit/:id" element={<AddCategoryFood {...props} />} />
-                    {/*loại bàn */}
-                    <Route exact path="/admin/categorytable" element={<ListCategoryTable {...props} />} />
-                    <Route exact path="/admin/categorytableEdit/:id" element={<AddCategoryTable {...props} />} />
-                    <Route exact path="/admin/categorytableadd" element={<AddCategoryTable {...props} />} />
-                    {/*user */}
-                    <Route exact path="/admin/ListUsers" element={<ListAllUsers {...props} />} />
-                    <Route exact path="/admin/addUsers" element={<CreateUsers {...props} />} />
-                    <Route exact path="/admin/addUsers/:id" element={<CreateUsers {...props} />} />
-                    {/* bàn */}
-                    <Route exact path="/admin/TablesAdd" element={<CreateTables {...props} />} />
-                    <Route exact path="/admin/TablesAdd/:id" element={<CreateTables {...props} />} />
-                    <Route path="/admin/ListTables" element={<ListAllTables {...props} />} />
-                    <Route path="/admin/ListTables/:id" element={<ListAllTables {...props} />} />
-                    {/* dashboard */}
-                    <Route exact path="/" element={<Dashboard {...props} />} />
-                    <Route exact path="/admin/FoodsAdd" element={<CreateFoods {...props} />} />
-                    <Route exact path="/admin/FoodssAdd/:id" element={<CreateFoods {...props} />} />
-                    <Route path="/admin/ListFoods" element={<ListAllFoods {...props} />} />
-                    {/* Vouchers */}
-                    <Route exact path="/admin/voucheradd" element={<CreateVoucher {...props} />} />
-                    <Route exact path="/admin/voucheradd/:id" element={<CreateVoucher {...props} />} />
-                    <Route path="/admin/listvouchers" element={<ListVoucher {...props} />} />
-
-                    <Route path="/search" element={<Search {...props} />} />
-
-                </Routes>
-            </AdminLayout>
+            <Switch>
+                <Route path="/login"><Signin {...props} /></Route>
+            </Switch>
+            <AdminRoute path="/admin">
+                <AdminLayout >
+                    <Switch>
+                        {/*loại món */}
+                        <Route exact path="/admin/categoryFoods"  ><ListCategoryFoods {...props} /></Route>
+                        <Route exact path="/admin/categoryFoodAdd" ><AddCategoryFood {...props} /></Route>
+                        <Route exact path="/admin/CategoryFoodEdit/:id" ><AddCategoryFood {...props} /></Route>
+                        {/*loại bàn */}
+                        <Route exact path="/admin/categorytable" ><ListCategoryTable {...props} /> </Route>
+                        <Route exact path="/admin/categorytableEdit/:id" ><AddCategoryTable {...props} /></Route>
+                        <Route exact path="/admin/categorytableadd" ><AddCategoryTable {...props} /></Route>
+                        {/*user */}
+                        <Route exact path="/admin/ListUsers" ><ListAllUsers {...props} /></Route>
+                        <Route exact path="/admin/addUsers"><CreateUsers {...props} /></Route>
+                        <Route exact path="/admin/addUsers/:id"><CreateUsers {...props} /></Route>
+                        {/* bàn */}
+                        <Route exact path="/admin/TablesAdd"><CreateTables {...props} /></Route>
+                        <Route exact path="/admin/TablesAdd/:id"><CreateTables {...props} /></Route>
+                        <Route path="/admin/ListTables" ><ListAllTables {...props} /></Route>
+                        <Route path="/admin/ListTables/:id" ><ListAllTables {...props} /></Route>
+                        {/* dashboard */}
+                        <Route exact path="/admin"><Dashboard {...props} /></Route>
+                        <Route exact path="/admin/FoodsAdd"><CreateFoods {...props} /></Route>
+                        <Route exact path="/admin/FoodssAdd/:id"><CreateFoods {...props} /></Route>
+                        <Route path="/admin/ListFoods"><ListAllFoods {...props} /></Route>
+                        {/* Vouchers */}
+                        <Route exact path="/admin/voucheradd"><CreateVoucher {...props} /></Route>
+                        <Route exact path="/admin/voucheradd/:id"><CreateVoucher {...props} /></Route>
+                        <Route path="/admin/listvouchers"><ListVoucher {...props} /></Route>
+                    </Switch>
+                </AdminLayout>
+            </AdminRoute>
         </BrowserRouter>
+
     )
 }

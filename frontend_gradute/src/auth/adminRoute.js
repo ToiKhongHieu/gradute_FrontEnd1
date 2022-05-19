@@ -1,17 +1,21 @@
 import { isAuthenticated } from ".";
-import { Routes, useNavigate } from "react-router-dom";
+import { Route } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 const AdminRoute = (props) => {
-const history = useNavigate();
   return (
-    <Routes
+    <Route 
       render={() =>
-        isAuthenticated() && isAuthenticated().id == 1 ? (
+        isAuthenticated() ? (
           props.children
         ) : (
-          history("https://datn-hethongdatban.herokuapp.com/auth/login")
+          <Redirect
+            to={{
+              pathname: "/login"
+            }}
+          />
         )
       }
-    ></Routes>
+    />
   );
 };
 export default AdminRoute;

@@ -1,6 +1,15 @@
 import instance from "./intance";
 
-export const getAllTables = () => {
-  const url = "api/uploadfile";
-  return instance.post(url);
+
+export const signup = (user) => {
+  const url = "/signup";
+  return instance.post(url, user);
 };
+export const signin = (user) => {
+  const url = "/Users/signin";
+  return instance.post(url, user);  
+};
+export const signout = (next) => {
+  localStorage.removeItem('token');
+  next()
+}

@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { AddFoods, getOneFoods } from "../../../api/FoodsAPI";
 import { useParams } from "react-router-dom";
@@ -9,7 +9,7 @@ const CreateFoods = (props) => {
         setInputMultipart(!inputMultipart);
     }
     const [categoryFood, setCategoryFood] = useState([]);
-    const history = useNavigate();
+    const history = useHistory();
     const [btnTile, setBtnTile] = useState("Thêm món");
     const { id } = useParams();
     const [url, setUrl] = useState("");

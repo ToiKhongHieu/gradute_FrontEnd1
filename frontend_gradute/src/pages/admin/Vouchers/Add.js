@@ -1,10 +1,10 @@
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { AddVoucher, getOneVoucher } from "../../../api/VoucherAPI";
 import { useParams } from "react-router-dom";
 const CreateVoucher = (props) => {
 
-    const history = useNavigate();
+    const history = useHistory();
     const [btnTile, setBtnTile] = useState("Thêm voucher");
     const { id } = useParams();
     const [title, setTitle] = useState("");

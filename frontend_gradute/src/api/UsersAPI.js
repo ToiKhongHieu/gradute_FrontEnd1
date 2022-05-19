@@ -1,7 +1,7 @@
 import instance from "./intance";
 
 export const getAllUsers = () => {
-  const url = "/api/Users";
+  const url = "/Users";
   return instance.get(url);
 };
 export const getOneUsers = (id) => {

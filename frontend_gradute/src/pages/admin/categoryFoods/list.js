@@ -36,10 +36,6 @@ export default function ListCategoryFoods(props) {
     }
 
     const columns = [{
-        Header: props => <th className="col d-flex justify-content-center text-info"></th>,
-        accessor: 'image',
-        Cell: props => <td><img src={props.value} height="100" /></td>
-    }, {
         Header: props => <th className="col d-flex justify-content-center text-info">Loại món</th>,
         accessor: 'name',
         Cell: props => <td className="col d-flex justify-content-center">{props.value}</td>

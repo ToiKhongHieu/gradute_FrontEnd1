@@ -1,19 +1,12 @@
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { AddCategoryFoodd, getOneCategoryFood } from "../../../api/CategoryFoodsAPI";
 import { useParams } from "react-router-dom";
 const AddCategoryFood = (props) => {
-
-    const [inputMultipart, setInputMultipart] = useState(true);
-    const changeMultipart = () => {
-        setInputMultipart(!inputMultipart);
-    }
-    const [selectedFile,setSelectedFile] = useState(null);
-    const history = useNavigate();
+    const history = useHistory();
     const [createdAt, setcreatedAt] = useState();
     const [btnTile, setBtnTile] = useState("Thêm thể loại");
     const { id } = useParams();
-    const [image, setImage] = useState("");
     const [name, setName] = useState("");
     const [status, setStatus] = useState("Sẵn sàng");
     const [description, setDescription] = useState("");
@@ -24,7 +17,6 @@ const AddCategoryFood = (props) => {
                     const { data } = await getOneCategoryFood(id);
                     setBtnTile("Sửa thể loại");
                     setcreatedAt(data.createdAt);
-                    setImage(data.image);
                     setName(data.name);
                     setStatus(data.status);
                     setDescription(data.description);
@@ -36,9 +28,6 @@ const AddCategoryFood = (props) => {
         }
         getCategory();
     }, []);
-    const getImage = (e) => {
-        setImage(e.target.value);
-    }
     const getName = (e) => {
         setName(e.target.value);
     }
@@ -49,24 +38,9 @@ const AddCategoryFood = (props) => {
     const getDescription = (e) => {
         setDescription(e.target.value);
     }
-    const onFileChangeHandler = (e) => {
-        e.preventDefault();
-        setSelectedFile(e.target.files[0]);
-        const formData = new FormData();
-        formData.append('file', selectedFile);
-        fetch('http://localhost:8080/upload', {
-            method: 'post',
-            body: formData
-        }).then(res => {
-            if(res.ok) {
-                console.log(res.data);
-                alert("File uploaded successfully.")
-            }
-        });
-    };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const data1 = { id, image, name, status, description, createdAt };
+        const data1 = { id, name, status, description, createdAt };
         const { data } = await AddCategoryFoodd(data1);
         if (id) {
             alert("Sửa thành công thể loại #" + data.id);
@@ -80,34 +54,9 @@ const AddCategoryFood = (props) => {
         }
     }
     const clearForm = () => {
-        setImage("");
         setName("");
         setStatus("sẵn sàng");
         setDescription("");
-    }
-    const renderForm = () => {
-        if (inputMultipart) {
-            return (
-                <div className="col-md-12">
-                    <div className="form-group">
-                        <label>Chọn Ảnh</label>
-                        <input type="file" onChange={onFileChangeHandler} className="form-control image-file" name="image" id="image"
-                            required />
-                        <a className="text-info" onClick={() => changeMultipart()}>hoặc thêm link ảnh</a>
-                    </div>
-                </div>
-            )
-        } if (!inputMultipart) {
-            return (
-                <div className="col-md-12">
-                    <div className="form-group">
-                        <label>Thêm link Ảnh</label>
-                        <input type="text" className="form-control image-file" name="image" id="image" onChange={getImage} required value={image} />
-                        <a className="text-info" onClick={() => changeMultipart()}>hoặc chọn ảnh từ máy</a>
-                    </div>
-                </div>
-            )
-        }
     }
 
     return (
@@ -125,7 +74,6 @@ const AddCategoryFood = (props) => {
                             <div className="card-body">
                                 <form onSubmit={handleSubmit} data-toggle="validator">
                                     <div className="row">
-                                        {renderForm()}
                                         <div className="col-md-12 mt-3">
                                             <div className="form-group">
                                                 <label>Tên thể loại</label>

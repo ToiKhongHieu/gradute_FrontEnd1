@@ -1,10 +1,10 @@
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { AddTables, getIdTables } from "../../../api/TablesAPI";
 import { useParams } from "react-router-dom";
 import { getAllCategoryTable } from "../../../api/CategoryTableAPI";
 const CreateTables = (props) => {
-    const history = useNavigate();
+    const history = useHistory();
     const [createdAt, setcreatedAt] = useState();
     const [btnTile, setBtnTile] = useState("Thêm bàn");
     const { id } = useParams();

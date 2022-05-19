@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import { getOneCategoryTable , AddCategoryTablee} from "../../../api/CategoryTableAPI";
 const AddCategoryTable = (props) => {
@@ -8,7 +8,7 @@ const AddCategoryTable = (props) => {
     const {id} = useParams();
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const history = useNavigate();
+    const history = useHistory();
     useEffect(() => {
         const getCategory = async () => {
             try {
