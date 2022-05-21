@@ -1,14 +1,11 @@
-import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { AddVoucher, getOneVoucher } from "../../../api/VoucherAPI";
-import { useParams } from "react-router-dom";
 const CreateVoucher = (props) => {
-
-    const history = useHistory();
     const [btnTile, setBtnTile] = useState("Thêm voucher");
-    const { id } = useParams();
+    const id = window.location.toString().split("voucheradd/")[1];
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const userid = JSON.parse(localStorage.getItem('token')).id;
     const [code, setCode] = useState("");
     const [discount, setDiscount] = useState(0);
     const [starttime, setStartTime] = useState(null);
@@ -85,7 +82,7 @@ const CreateVoucher = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("status", status);
-        const data1 = { id, title, content, status, code, discount, starttime, endtime, amount };
+        const data1 = { id, title, content, userid , status, code, discount, starttime, endtime, amount };
         if(starttime && endtime && new Date(endtime).getTime() > new Date(starttime).getTime()){
             await AddVoucher(data1);
             if (id) {
@@ -96,7 +93,7 @@ const CreateVoucher = (props) => {
             // clearForm();
             const check = window.confirm('Bạn có muốn về trang danh sách không ?');
             if (check) {
-                history("/admin/listvouchers");
+                window.location.replace("/admin/listvouchers");
             }
         }
     }

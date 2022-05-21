@@ -11,8 +11,8 @@ import Search from "../../../components/admin/Search";
 export default function ListAllTables(props) {
     const [Tables, setTables] = useState([]);
     const pageName = "table";
-    const status = ["Đang sử dụng","Trống"];
-    const { id } = useParams();
+    const status = ["đang sử dụng","còn bàn"];
+    const id = window.location.toString().split("ListTables/")[1];
 
     useEffect(() => {
         const getTables = async () => {
@@ -62,9 +62,9 @@ export default function ListAllTables(props) {
         Header: props => <th className="col d-flex justify-content-center text-info">Trạng thái</th>,
         accessor: 'status',
         Cell: props => {
-            if(props.value == "Trống"){
+            if(props.value == "còn bàn"){
                 return <td className="text-success">{props.value}</td>
-            }if(props.value == "Đang sử dụng"){
+            }if(props.value == "đang sử dụng"){
                 return <td className="text-danger">{props.value}</td>
             }
         } 

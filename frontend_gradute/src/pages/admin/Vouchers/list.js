@@ -64,11 +64,11 @@ export default function ListVoucher(props) {
         accessor: 'amount',
         Cell: props => <td className="col d-flex justify-content-center">{props.value}</td>
     },
-    // {
-    //     Header: props => <th className="col d-flex justify-content-center text-info">Người tạo</th>,
-    //     accessor: 'users',
-    //     Cell: props => <td className="col d-flex justify-content-center">{props.value.username}</td>
-    // },
+    {
+        Header: props => <th className="col d-flex justify-content-center text-info">Người tạo</th>,
+        accessor: 'users',
+        Cell: props => <td className="col d-flex justify-content-center">{props.value.username}</td>
+    },
     {
         Header: props => <th className="col d-flex justify-content-center text-info">Ngày hiệu lực</th>,
         accessor: 'starttime',

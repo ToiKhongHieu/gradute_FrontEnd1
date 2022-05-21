@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Redirect } from "react-router-dom";
 import { signin } from "../../api/authAPI";
 import { authenticate, isAuthenticated } from "../../auth";
 
@@ -26,9 +25,7 @@ const Signin = () => {
   })
   const redirectUser = () => {
     if (isAuthenticated()) {
-      return (() =><Redirect
-        to= "/admin"
-      />)
+      window.location.replace("/admin");
     }
   };
   return (

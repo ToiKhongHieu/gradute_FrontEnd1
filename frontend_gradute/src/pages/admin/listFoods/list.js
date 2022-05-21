@@ -8,7 +8,7 @@ import Search from "../../../components/admin/Search";
 export default function ListAllFoods(props) {
     const [foods, setfoods] = useState([]);
     const pageName = "food";
-    const status = ["Sẵn sàng","Ẩn"];
+    const status = ["còn","hết"];
     useEffect(() => {
         const getFoods = async () => {
             try {
@@ -39,7 +39,7 @@ export default function ListAllFoods(props) {
     const columns = [{
         Header: props => <th className="col d-flex justify-content-center text-info"></th>,
         accessor: 'url',
-        Cell: props => <td><img src={props.value} height="100" /></td>
+        Cell: props => <td><img src={`../images/${props.value}`} height="100" /></td>
     }, {
         Header: props => <th className="col d-flex justify-content-center text-info">Tên món</th>,
         accessor: 'name',
@@ -52,9 +52,9 @@ export default function ListAllFoods(props) {
         Header: props => <th className="col d-flex justify-content-center text-info">Trạng thái</th>,
         accessor: 'status',
         Cell: props => {
-            if (props.value == "Sẵn sàng") return (
+            if (props.value == "còn") return (
                 <td className="col d-flex justify-content-center text-success">{props.value}</td>)
-            if (props.value == "Ẩn") return (<td className="col d-flex justify-content-center text-muted">{props.value}</td>)
+            if (props.value == "hết") return (<td className="col d-flex justify-content-center text-muted">{props.value}</td>)
         }
     }, {
         Header: props => <th className="col d-flex justify-content-center text-info">Mô Tả</th>,

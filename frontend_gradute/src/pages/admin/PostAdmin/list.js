@@ -37,21 +37,21 @@ export default function ListAllPost(props) {
         Header: props => <th className="col d-flex justify-content-center text-info">Ảnh</th>,
         accessor: 'image',
         Cell: props => <td><img src={props.value} height="100" /></td>
-    },{
+    }, {
         Header: props => <th className="col d-flex justify-content-center text-info">ID bài viết</th>,
         accessor: 'id',
         Cell: props => <td className="col d-flex justify-content-center">{props.value}</td>
     }, {
-        Header: props => <th className="col d-flex justify-content-center text-info">ID người đăng</th>,
-        accessor: 'userid',
-        Cell: props => <td className="col d-flex justify-content-center">{props.value}</td>
+        Header: props => <th className="col d-flex justify-content-center text-info">Người tạo</th>,
+        accessor: 'users',
+        Cell: props => <td className="col d-flex justify-content-center">{props.value.username}</td>
     }, {
         Header: props => <th className="col d-flex justify-content-center text-info">Tiêu đề</th>,
         accessor: 'title',
         Cell: props => <td className="col d-flex justify-content-center">{props.value}</td>
-    },{
+    }, {
         Header: props => <th className="col d-flex justify-content-center text-info">Nội dung</th>,
-        accessor: 'content',
+        accessor: 'description',
         Cell: props => <td className="col d-flex justify-content-center">{props.value}</td>
     }, {
         Header: props => <th className="col d-flex text-info">Hành động</th>,

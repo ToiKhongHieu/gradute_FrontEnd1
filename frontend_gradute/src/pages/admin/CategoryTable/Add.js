@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
-import { useHistory } from 'react-router-dom';
-import { useParams } from "react-router-dom";
 import { getOneCategoryTable , AddCategoryTablee} from "../../../api/CategoryTableAPI";
 const AddCategoryTable = (props) => {
     const [createdAt , setcreatedAt] = useState();
     const [btnTile,setBtnTile] = useState("Thêm thể loại bàn");
-    const {id} = useParams();
+    const id = window.location.toString().split("categorytableEdit/")[1];
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const history = useHistory();
     useEffect(() => {
         const getCategory = async () => {
             try {
@@ -43,7 +40,7 @@ const AddCategoryTable = (props) => {
         clearForm();
         const check = window.confirm('Bạn có muốn về trang danh sách không ?');
         if (check) {
-            history("/admin/categorytable");
+            window.location.replace("/admin/categorytable");
         }
     }
     const clearForm = () => {

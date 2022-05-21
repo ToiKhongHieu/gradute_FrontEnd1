@@ -4,7 +4,7 @@ export default function Sidebar() {
             <div className="iq-sidebar  sidebar-default ">
                 <div className="iq-sidebar-logo d-flex align-items-center justify-content-between">
                     <a href="/" className="header-logo">
-                        <img src="../assets/images/logo.png" className="img-fluid rounded-normal light-logo" alt="logo"/>
+                        <img src="../assets/images/logo.png" className="img-fluid rounded-normal light-logo" alt="logo" />
                         <h5 class="logo-title light-logo ml-3">Tano</h5>
                     </a>
                     <div className="iq-menu-bt-sidebar ml-0">
@@ -16,13 +16,13 @@ export default function Sidebar() {
                         <ul id="iq-sidebar-toggle" className="iq-menu">
                             <li className="active">
                                 <a href="/admin" className="svg-icon">
-                                <i class="fas fa-layer-group" style={{"font-size":"24px"}}></i>
+                                    <i class="fas fa-layer-group" style={{ "font-size": "24px" }}></i>
                                     <span className="ml-4">Thống kê</span>
                                 </a>
                             </li>
                             <li className=" ">
                                 <a href="#category" className="collapsed" data-toggle="collapse" aria-expanded="false">
-                                <i class='fas fa-book' style={{"font-size":"24px"}}></i>
+                                    <i class='fas fa-book' style={{ "font-size": "24px" }}></i>
                                     <span className="ml-4">loại món</span>
                                     <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
@@ -41,10 +41,10 @@ export default function Sidebar() {
                                     </li>
                                 </ul>
                             </li>
-                            
+
                             <li className=" ">
                                 <a href="#product" className="collapsed" data-toggle="collapse" aria-expanded="false">
-                                <i class='fas fa-drumstick-bite' style={{"font-size":"24px"}}></i>
+                                    <i class='fas fa-drumstick-bite' style={{ "font-size": "24px" }}></i>
                                     <span className="ml-4">Món</span>
                                     <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
@@ -63,10 +63,10 @@ export default function Sidebar() {
                                     </li>
                                 </ul>
                             </li>
-                           
+
                             <li className=" ">
                                 <a href="#sale" className="collapsed" data-toggle="collapse" aria-expanded="false">
-                                <i class="fas fa-object-group" style={{"font-size":"24px"}}></i>
+                                    <i class="fas fa-object-group" style={{ "font-size": "24px" }}></i>
                                     <span className="ml-4">loại bàn</span>
                                     <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
@@ -87,7 +87,7 @@ export default function Sidebar() {
                             </li>
                             <li className=" ">
                                 <a href="#purchase" className="collapsed" data-toggle="collapse" aria-expanded="false">
-                                <i class="fas fa-table" style={{"font-size":"24px"}}></i>
+                                    <i class="fas fa-table" style={{ "font-size": "24px" }}></i>
                                     <span className="ml-4">Bàn</span>
                                     <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
@@ -106,10 +106,40 @@ export default function Sidebar() {
                                     </li>
                                 </ul>
                             </li>
-                           
+
+                            <li className=" ">
+                                <a href="#otherpage" className="collapsed" data-toggle="collapse" aria-expanded="false">
+                                        <svg class="svg-icon" id="p-dash9" width="20" height="20"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                            <rect x="7" y="7" width="3" height="9"></rect>
+                                            <rect x="14" y="7" width="3" height="5"></rect>
+                                        </svg>
+                                        <span className="ml-4">Bài viết</span>
+                                        <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                                        </svg>
+                                    </a>
+                                    <ul id="otherpage" className="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                                        <li className="">
+                                            <a href="/admin/Post">
+                                                <i className="las la-minus"></i><span>Danh sách bài viết</span>
+                                            </a>
+                                        </li>
+                                        <li className="">
+                                            <a href="/admin/addPost">
+                                                <i className="las la-minus"></i><span>Thêm bài viết</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                            </li>
+
+
                             <li className=" ">
                                 <a href="#people" className="collapsed" data-toggle="collapse" aria-expanded="false">
-                                <i class='fas fa-address-book' style={{"font-size":"24px"}}></i>
+                                    <i class='fas fa-address-book' style={{ "font-size": "24px" }}></i>
                                     <span className="ml-4">Người dùng</span>
                                     <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
@@ -150,7 +180,7 @@ export default function Sidebar() {
                             </li>
                             <li className=" ">
                                 <a href="#return" className="collapsed" data-toggle="collapse" aria-expanded="false">
-                                <i class='far fa-credit-card' style={{"font-size":"24px"}}></i>
+                                    <i class='far fa-credit-card' style={{ "font-size": "24px" }}></i>
                                     <span className="ml-4">vouchers</span>
                                     <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
@@ -169,7 +199,7 @@ export default function Sidebar() {
                                     </li>
                                 </ul>
                             </li>
-                            
+
                             {/* <li className="">
                                 <a href="../backend/page-report.html" className="">
                                     <svg class="svg-icon" id="p-dash7" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -538,7 +568,7 @@ export default function Sidebar() {
                                     </li>
                                 </ul>
                             </li>*/}
-                        </ul> 
+                        </ul>
                     </nav>
                     {/* <div id="sidebar-bottom" className="position-relative sidebar-bottom">
                         <div className="card border-none">
@@ -554,7 +584,7 @@ export default function Sidebar() {
                     <div className="p-3"></div>
                 </div>
             </div>
-            
+
         </>
     )
 }

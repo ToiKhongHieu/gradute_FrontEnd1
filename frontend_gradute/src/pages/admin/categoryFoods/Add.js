@@ -1,17 +1,15 @@
-import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { AddCategoryFoodd, getOneCategoryFood } from "../../../api/CategoryFoodsAPI";
-import { useParams } from "react-router-dom";
 const AddCategoryFood = (props) => {
-    const history = useHistory();
     const [createdAt, setcreatedAt] = useState();
     const [btnTile, setBtnTile] = useState("Thêm thể loại");
-    const { id } = useParams();
+    const id = window.location.toString().split("CategoryFoodEdit/")[1];
     const [name, setName] = useState("");
     const [status, setStatus] = useState("Sẵn sàng");
     const [description, setDescription] = useState("");
     useEffect(() => {
         const getCategory = async () => {
+            console.log("location", id);
             try {
                 if (id) {
                     const { data } = await getOneCategoryFood(id);
@@ -50,7 +48,7 @@ const AddCategoryFood = (props) => {
         clearForm();
         const check = window.confirm('Bạn có muốn về trang danh sách không ?');
         if (check) {
-            history("/admin/categoryFoods");
+            window.location.replace("/admin/categoryFoods");
         }
     }
     const clearForm = () => {
@@ -87,10 +85,13 @@ const AddCategoryFood = (props) => {
                                         <div className="col-md-12 mt-3" >
                                             <div className="form-group">
                                                 <label>Trạng thái</label>
-                                                <select name="status" className="form-control" onChange={getStatus} value={status}>
+                                                <select name="status" className="form-control" required onChange={getStatus} value={status}>
                                                     <option className="text-success" value="Sẵn sàng">Sẵn sàng</option>
                                                     <option className="text-secondary" value="Ẩn" >Ẩn</option>
                                                 </select>
+                                                <div className="help-block with-errors">
+
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="form-label-group mb-3 mt-3">

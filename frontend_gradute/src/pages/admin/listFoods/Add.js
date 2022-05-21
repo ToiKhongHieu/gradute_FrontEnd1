@@ -1,7 +1,5 @@
-import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { AddFoods, getOneFoods } from "../../../api/FoodsAPI";
-import { useParams } from "react-router-dom";
 import { getAllCategoryFood } from '../../../api/CategoryFoodsAPI';
 const CreateFoods = (props) => {
     const [inputMultipart, setInputMultipart] = useState(true);
@@ -9,9 +7,8 @@ const CreateFoods = (props) => {
         setInputMultipart(!inputMultipart);
     }
     const [categoryFood, setCategoryFood] = useState([]);
-    const history = useHistory();
     const [btnTile, setBtnTile] = useState("Thêm món");
-    const { id } = useParams();
+    const id = window.location.toString().split("FoodssAdd/")[1];
     const [url, setUrl] = useState("");
     const [name, setName] = useState("");
     const [categoryId, setcategoryId] = useState(null);
@@ -72,7 +69,7 @@ const CreateFoods = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data1 = { id, url, categoryId, name, price, status, description };
-        const { data } = await AddFoods(data1);
+        await AddFoods(data1);
         if (id) {
             alert("Sửa thành công món #" + id);
         } else {
@@ -81,7 +78,7 @@ const CreateFoods = (props) => {
         clearForm();
         const check = window.confirm('Bạn có muốn về trang danh sách không ?');
         if (check) {
-            history("/admin/ListFoods");
+            window.location.replace("/admin/ListFoods");
         }
     }
     const clearForm = () => {
@@ -169,8 +166,8 @@ const CreateFoods = (props) => {
                                             <div className="form-group">
                                                 <label>Trạng thái</label>
                                                 <select name="status" className="form-control" onChange={getStatus} value={status}>
-                                                    <option className="text-success" value="Sẵn sàng">Sẵn sàng</option>
-                                                    <option className="text-secondary" value="Ẩn" >Ẩn</option>
+                                                    <option className="text-success" value="còn">Còn</option>
+                                                    <option className="text-secondary" value="hết" >Hết</option>
                                                 </select>
                                             </div>
                                         </div>

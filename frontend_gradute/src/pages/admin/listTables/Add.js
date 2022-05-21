@@ -1,15 +1,12 @@
-import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { AddTables, getIdTables } from "../../../api/TablesAPI";
-import { useParams } from "react-router-dom";
 import { getAllCategoryTable } from "../../../api/CategoryTableAPI";
 const CreateTables = (props) => {
-    const history = useHistory();
     const [createdAt, setcreatedAt] = useState();
     const [btnTile, setBtnTile] = useState("Thêm bàn");
-    const { id } = useParams();
+    const id = window.location.toString().split("TablesAdd/")[1];
     const [name, setName] = useState("");
-    const [status, setStatus] = useState("Sẵn sàng");
+    const [status, setStatus] = useState("còn bàn");
     const [categoryId, setcategoryId] = useState(null);
     const [categoryTable, setCategoryTable] = useState([]);
     useEffect(() => {
@@ -63,7 +60,7 @@ const CreateTables = (props) => {
         clearForm();
         const check = window.confirm('Bạn có muốn về trang danh sách không ?');
         if (check) {
-            history("/admin/ListTables");
+            window.location.replace("/admin/ListTables");
         }
     }
     const clearForm = () => {
@@ -101,8 +98,8 @@ const CreateTables = (props) => {
                                                 <label>Trạng thái</label>
                                                 <select name="status" className="form-control" onChange={getStatus} value={status}>
                                                     <option className="text-primary" value={null}>chọn</option>
-                                                    <option className="text-success" value="Đang sử dụng">Đang sử dụng</option>
-                                                    <option className="text-secondary" value="Trống" >Trống</option>
+                                                    <option className="text-success" value="đang sử dụng">đang sử dụng</option>
+                                                    <option className="text-secondary" value="còn bàn" >còn bàn</option>
                                                 </select>
                                             </div>
                                         </div>

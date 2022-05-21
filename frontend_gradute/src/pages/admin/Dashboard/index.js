@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
-import { getTotal } from "../../../api/oderAPI";
+import { getsaleatshop, getSumOrders, getTopFoods, getTotal, getTotalSalesDay, getTotalSalesMonth, getTotalSalesYear, getTotalShip } from "../../../api/oderAPI";
 
 export default function Dashboard(props) {
     const [totalSales, setTotalSales] = useState(0);
-
+    const [sumOrders, setSumOrders] = useState(0);
+    const [totalSalesDay, setTotalSalesDay] = useState(0);
+    const [totalSalesMonth, setTotalSalesMonth] = useState(0);
+    const [totalSalesYear, setTotalSalesYear] = useState(0);
+    const [totalSalesAtShop, setTotalSaleAtShop] = useState(0);
+    const [topFoods, setTopFoods] = useState([]);
+    const [totalSaleShip, setTotalSaleShip] = useState(0);
     useEffect(() => {
         const getDashboard = async () => {
             try {
-                const {data} = await getTotal();
+                const { data } = await getTotal();
                 await setTotalSales(data);
             } catch (error) {
                 console.log("Error getCategories " + error);
@@ -15,32 +21,131 @@ export default function Dashboard(props) {
         }
         getDashboard();
     }, []);
-    
+
+    useEffect(() => {
+        const getDashboard = async () => {
+            try {
+                const { data } = await getTotalSalesDay();
+                await setTotalSalesDay(data);
+            } catch (error) {
+                console.log("Error getCategories " + error);
+            }
+        }
+        getDashboard();
+    }, []);
+
+    useEffect(() => {
+        const getDashboard = async () => {
+            try {
+                const { data } = await getTotalSalesMonth();
+                await setTotalSalesMonth(data);
+            } catch (error) {
+                console.log("Error getCategories " + error);
+            }
+        }
+        getDashboard();
+    }, []);
+
+    useEffect(() => {
+        const getDashboard = async () => {
+            try {
+                const { data } = await getTotalSalesYear();
+                await setTotalSalesYear(data);
+            } catch (error) {
+                console.log("Error getCategories " + error);
+            }
+        }
+        getDashboard();
+    }, []);
+
+
+    useEffect(() => {
+        const getDashboard = async () => {
+            try {
+                const { data } = await getTotal();
+                await setTotalSales(data);
+            } catch (error) {
+                console.log("Error getCategories " + error);
+            }
+        }
+        getDashboard();
+    }, []);
+
+    useEffect(() => {
+        const getDashboard = async () => {
+            try {
+                const { data } = await getTopFoods();
+                await setTopFoods(data);
+                console.log("TopFoods", topFoods);
+            } catch (error) {
+                console.log("Error getCategories " + error);
+            }
+        }
+        getDashboard();
+    }, []);
+
+    useEffect(() => {
+        const getDashboard = async () => {
+            try {
+                const { data } = await getSumOrders();
+                await setSumOrders(data);
+            } catch (error) {
+                console.log("Error getCategories " + error);
+            }
+        }
+        getDashboard();
+    }, []);
+
+    useEffect(() => {
+        const getDashboard = async () => {
+            try {
+                const { data } = await getsaleatshop();
+                await setTotalSaleAtShop(data);
+                // const {data2} = await getTotalByStatus("Đã nhận được hàng");
+                // await setTotalSaleShip(data2);
+            } catch (error) {
+                console.log("Error getCategories " + error);
+            }
+        }
+        getDashboard();
+    }, []);
+
+    useEffect(() => {
+        const getDashboard = async () => {
+            try {
+                const { data } = await getTotalShip();
+                await setTotalSaleShip(data);
+                // const {data2} = await getTotalByStatus("Đã nhận được hàng");
+                // await setTotalSaleShip(data2);
+            } catch (error) {
+                console.log("Error getCategories " + error);
+            }
+        }
+        getDashboard();
+    }, []);
+
     return (
         <>
             <div className="content-page">
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-lg-4">
-                        <div className="card card-transparent card-block card-stretch card-height border-none">
-                            <div className="card-body p-0 mt-lg-2 mt-0">
-                                <h3 className="mb-3">xin chào , chúc một ngày tốt lành </h3>
-                                <p className="mb-0 mr-4">Tại đây cung cấp cho bạn thông tin và hiệu suất kinh doanh</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-8">
+                <div className="container-fluid">
+                    <div className="row">
                         <div className="row">
-                            <div className="col-lg-4 col-md-4">
+                            <div className="col-lg-3 col-md-3">
                                 <div className="card card-block card-stretch card-height">
                                     <div className="card-body">
                                         <div className="d-flex align-items-center mb-4 card-total-sale">
                                             <div className="icon iq-icon-box-2 bg-info-light">
-                                                <img src="../assets/images/product/1.png" class="img-fluid" alt="image" />
+                                                <svg class="svg-icon" id="p-dash4" width="20" height="20"
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                                                    <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                                                </svg>
                                             </div>
                                             <div>
-                                                <p className="mb-2">Tổng doanh số</p>
-                                                <h4>{totalSales}</h4>
+                                                <p className="mb-2">Tổng số lượng đơn hàng</p>
+                                                <h4>{sumOrders}</h4>
                                             </div>
                                         </div>
                                         <div className="iq-progress-bar mt-2">
@@ -50,7 +155,26 @@ export default function Dashboard(props) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-lg-4 col-md-4">
+                            <div className="col-lg-3 col-md-3">
+                                <div className="card card-block card-stretch card-height">
+                                    <div className="card-body">
+                                        <div className="d-flex align-items-center mb-4 card-total-sale">
+                                            <div className="icon iq-icon-box-2 bg-info-light">
+                                                <img src="../assets/images/product/1.png" class="img-fluid" alt="image" />
+                                            </div>
+                                            <div>
+                                                <p className="mb-2">Tổng doanh số</p>
+                                                <h4>{totalSales.toLocaleString()}</h4><p>VNĐ</p>
+                                            </div>
+                                        </div>
+                                        <div className="iq-progress-bar mt-2">
+                                            <span className="bg-info iq-progress progress-1" data-percent="85">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-lg-3 col-md-3">
                                 <div className="card card-block card-stretch card-height">
                                     <div className="card-body">
                                         <div className="d-flex align-items-center mb-4 card-total-sale">
@@ -58,8 +182,8 @@ export default function Dashboard(props) {
                                                 <img src="../assets/images/product/2.png" class="img-fluid" alt="image" />
                                             </div>
                                             <div>
-                                                <p className="mb-2">Total Cost</p>
-                                                <h4>$ 4598</h4>
+                                                <p className="mb-2">Doanh số bán tại bàn</p>
+                                                <h4>{totalSalesAtShop.toLocaleString()}</h4><p>VNĐ</p>
                                             </div>
                                         </div>
                                         <div className="iq-progress-bar mt-2">
@@ -69,7 +193,7 @@ export default function Dashboard(props) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-lg-4 col-md-4">
+                            <div className="col-lg-3 col-md-3">
                                 <div className="card card-block card-stretch card-height">
                                     <div className="card-body">
                                         <div className="d-flex align-items-center mb-4 card-total-sale">
@@ -77,8 +201,8 @@ export default function Dashboard(props) {
                                                 <img src="../assets/images/product/3.png" class="img-fluid" alt="image" />
                                             </div>
                                             <div>
-                                                <p className="mb-2">Product Sold</p>
-                                                <h4>4589 M</h4>
+                                                <p className="mb-2">Doanh số bán mang về</p>
+                                                <h4>{totalSaleShip.toLocaleString()}</h4><p>VNĐ</p>
                                             </div>
                                         </div>
                                         <div className="iq-progress-bar mt-2">
@@ -89,301 +213,81 @@ export default function Dashboard(props) {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="col-lg-6">
-                        <div className="card card-block card-stretch card-height">
-                            <div className="card-header d-flex justify-content-between">
-                                <div className="header-title">
-                                    <h4 className="card-title">Overview</h4>
-                                </div>
-                                <div className="card-header-toolbar d-flex align-items-center">
-                                    <div className="dropdown">
-                                        <span class="dropdown-toggle dropdown-bg btn" id="dropdownMenuButton001"
-                                            data-toggle="dropdown">
-                                            This Month<i className="ri-arrow-down-s-line ml-1"></i>
-                                        </span>
-                                        <div className="dropdown-menu dropdown-menu-right shadow-none"
-                                            aria-labelledby="dropdownMenuButton001">
-                                            <a class="dropdown-item" href="#">Year</a>
-                                            <a class="dropdown-item" href="#">Month</a>
-                                            <a class="dropdown-item" href="#">Week</a>
-                                        </div>
+                        <div class="col-lg-4">
+                            <div class="card card-block card-stretch card-height">
+                                <div class="card-header d-flex justify-content-between">
+                                    <div class="header-title">
+                                        <h4 class="card-title text-primary">Doanh thu theo tháng</h4>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="card-body">
-                                <div id="layout1-chart1"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-6">
-                        <div className="card card-block card-stretch card-height">
-                            <div className="card-header d-flex align-items-center justify-content-between">
-                                <div className="header-title">
-                                    <h4 className="card-title">Revenue Vs Cost</h4>
-                                </div>
-                                <div className="card-header-toolbar d-flex align-items-center">
-                                    <div className="dropdown">
-                                        <span class="dropdown-toggle dropdown-bg btn" id="dropdownMenuButton002"
-                                            data-toggle="dropdown">
-                                            This Month<i className="ri-arrow-down-s-line ml-1"></i>
-                                        </span>
-                                        <div className="dropdown-menu dropdown-menu-right shadow-none"
-                                            aria-labelledby="dropdownMenuButton002">
-                                            <a class="dropdown-item" href="#">Yearly</a>
-                                            <a class="dropdown-item" href="#">Monthly</a>
-                                            <a class="dropdown-item" href="#">Weekly</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="card-body">
-                                <div id="layout1-chart-2" style={{ "min-height" : 360}}></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-8">
-                        <div className="card card-block card-stretch card-height">
-                            <div className="card-header d-flex align-items-center justify-content-between">
-                                <div className="header-title">
-                                    <h4 className="card-title">Top Products</h4>
-                                </div>
-                                <div className="card-header-toolbar d-flex align-items-center">
-                                    <div className="dropdown">
-                                        <span class="dropdown-toggle dropdown-bg btn" id="dropdownMenuButton006"
-                                            data-toggle="dropdown">
-                                            This Month<i className="ri-arrow-down-s-line ml-1"></i>
-                                        </span>
-                                        <div className="dropdown-menu dropdown-menu-right shadow-none"
-                                            aria-labelledby="dropdownMenuButton006">
-                                            <a class="dropdown-item" href="#">Year</a>
-                                            <a class="dropdown-item" href="#">Month</a>
-                                            <a class="dropdown-item" href="#">Week</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="card-body">
-                                <ul className="list-unstyled row top-product mb-0">
-                                    <li className="col-lg-3">
-                                        <div className="card card-block card-stretch card-height mb-0">
-                                            <div className="card-body">
-                                                <div className="bg-warning-light rounded">
-                                                    <img src="../assets/images/product/01.png"
-                                                        class="style-img img-fluid m-auto p-3" alt="image" />
-                                                </div>
-                                                <div className="style-text text-left mt-3">
-                                                    <h5 className="mb-1">Organic Cream</h5>
-                                                    <p className="mb-0">789 Item</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li className="col-lg-3">
-                                        <div className="card card-block card-stretch card-height mb-0">
-                                            <div className="card-body">
-                                                <div className="bg-danger-light rounded">
-                                                    <img src="../assets/images/product/02.png"
-                                                        class="style-img img-fluid m-auto p-3" alt="image" />
-                                                </div>
-                                                <div className="style-text text-left mt-3">
-                                                    <h5 className="mb-1">Rain Umbrella</h5>
-                                                    <p className="mb-0">657 Item</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li className="col-lg-3">
-                                        <div className="card card-block card-stretch card-height mb-0">
-                                            <div className="card-body">
-                                                <div className="bg-info-light rounded">
-                                                    <img src="../assets/images/product/03.png"
-                                                        class="style-img img-fluid m-auto p-3" alt="image" />
-                                                </div>
-                                                <div className="style-text text-left mt-3">
-                                                    <h5 className="mb-1">Serum Bottle</h5>
-                                                    <p className="mb-0">489 Item</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li className="col-lg-3">
-                                        <div className="card card-block card-stretch card-height mb-0">
-                                            <div className="card-body">
-                                                <div className="bg-success-light rounded">
-                                                    <img src="../assets/images/product/02.png"
-                                                        class="style-img img-fluid m-auto p-3" alt="image" />
-                                                </div>
-                                                <div className="style-text text-left mt-3">
-                                                    <h5 className="mb-1">Organic Cream</h5>
-                                                    <p className="mb-0">468 Item</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-4">
-                        <div className="card card-transparent card-block card-stretch mb-4">
-                            <div className="card-header d-flex align-items-center justify-content-between p-0">
-                                <div className="header-title">
-                                    <h4 className="card-title mb-0">Best Item All Time</h4>
-                                </div>
-                                <div className="card-header-toolbar d-flex align-items-center">
-                                    <div><a href="#" className="btn btn-primary view-btn font-size-14">View All</a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="card card-block card-stretch card-height-helf">
-                            <div className="card-body card-item-right">
-                                <div className="d-flex align-items-top">
-                                    <div className="bg-warning-light rounded">
-                                        <img src="../assets/images/product/04.png" className="style-img img-fluid m-auto"
-                                            alt="image" />
-                                    </div>
-                                    <div className="style-text text-left">
-                                        <h5 className="mb-2">Coffee Beans Packet</h5>
-                                        <p className="mb-2">Total Sell : 45897</p>
-                                        <p className="mb-0">Total Earned : $45,89 M</p>
+                                    <div class="card-header-toolbar d-flex align-items-center">
+                                        <h4>{totalSalesDay.toLocaleString()}</h4><p>VNĐ</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="card card-block card-stretch card-height-helf">
-                            <div className="card-body card-item-right">
-                                <div className="d-flex align-items-top">
-                                    <div className="bg-danger-light rounded">
-                                        <img src="../assets/images/product/05.png" className="style-img img-fluid m-auto"
-                                            alt="image" />
+                        <div class="col-lg-4">
+                            <div class="card card-block card-stretch card-height">
+                                <div class="card-header d-flex justify-content-between">
+                                    <div class="header-title">
+                                        <h4 class="card-title text-primary">Doanh thu theo tháng</h4>
                                     </div>
-                                    <div className="style-text text-left">
-                                        <h5 className="mb-2">Bottle Cup Set</h5>
-                                        <p className="mb-2">Total Sell : 44359</p>
-                                        <p className="mb-0">Total Earned : $45,50 M</p>
+                                    <div class="card-header-toolbar d-flex align-items-center">
+                                        <h4>{totalSalesMonth.toLocaleString()}</h4><p>VNĐ</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="col-lg-4">
-                        <div className="card card-block card-stretch card-height-helf">
-                            <div className="card-body">
-                                <div className="d-flex align-items-top justify-content-between">
-                                    <div className="">
-                                        <p className="mb-0">Income</p>
-                                        <h5>$ 98,7800 K</h5>
+
+                        <div class="col-lg-4">
+                            <div class="card card-block card-stretch card-height">
+                                <div class="card-header d-flex justify-content-between">
+                                    <div class="header-title">
+                                        <h4 class="card-title text-primary">Doanh thu theo tháng</h4>
                                     </div>
-                                    <div className="card-header-toolbar d-flex align-items-center">
-                                        <div className="dropdown">
-                                            <span class="dropdown-toggle dropdown-bg btn" id="dropdownMenuButton003"
-                                                data-toggle="dropdown">
-                                                This Month<i className="ri-arrow-down-s-line ml-1"></i>
-                                            </span>
-                                            <div className="dropdown-menu dropdown-menu-right shadow-none"
-                                                aria-labelledby="dropdownMenuButton003">
-                                                <a class="dropdown-item" href="#">Year</a>
-                                                <a class="dropdown-item" href="#">Month</a>
-                                                <a class="dropdown-item" href="#">Week</a>
-                                            </div>
-                                        </div>
+                                    <div class="card-header-toolbar d-flex align-items-center">
+                                        <h4>{totalSalesYear.toLocaleString()}</h4><p>VNĐ</p>
                                     </div>
                                 </div>
-                                <div id="layout1-chart-3" className="layout-chart-1"></div>
                             </div>
                         </div>
-                        <div className="card card-block card-stretch card-height-helf">
-                            <div className="card-body">
-                                <div className="d-flex align-items-top justify-content-between">
-                                    <div className="">
-                                        <p className="mb-0">Expenses</p>
-                                        <h5>$ 45,8956 K</h5>
-                                    </div>
-                                    <div className="card-header-toolbar d-flex align-items-center">
-                                        <div className="dropdown">
-                                            <span class="dropdown-toggle dropdown-bg btn" id="dropdownMenuButton004"
-                                                data-toggle="dropdown">
-                                                This Month<i className="ri-arrow-down-s-line ml-1"></i>
-                                            </span>
-                                            <div className="dropdown-menu dropdown-menu-right shadow-none"
-                                                aria-labelledby="dropdownMenuButton004">
-                                                <a class="dropdown-item" href="#">Year</a>
-                                                <a class="dropdown-item" href="#">Month</a>
-                                                <a class="dropdown-item" href="#">Week</a>
-                                            </div>
-                                        </div>
+                        <div className="col-lg-12">
+                            <div className="card card-block card-stretch card-height">
+                                <div className="card-header d-flex align-items-center justify-content-between">
+                                    <div className="header-title">
+                                        <h4 className="card-title text-success">Top 5 món bán chạy nhất</h4>
                                     </div>
                                 </div>
-                                <div id="layout1-chart-4" className="layout-chart-2"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-8">
-                        <div className="card card-block card-stretch card-height">
-                            <div className="card-header d-flex justify-content-between">
-                                <div className="header-title">
-                                    <h4 className="card-title">Order Summary</h4>
+                                <div className="card-body">
+                                    <ul className="list-unstyled row top-product mb-0">
+
+                                        {
+                                            topFoods.slice(0, 5).map((item) => {
+                                                return (<li className="col-lg-3">
+                                                    <div className="card card-block card-stretch card-height mb-0">
+                                                        <div className="card-body">
+                                                            <div className="bg-warning-light rounded">
+                                                                <img src={`../images/${item.url}`}
+                                                                    class="style-img img-fluid m-auto p-3" alt="image" />
+                                                            </div>
+                                                            <div className="style-text text-left mt-3">
+                                                                <h5 className="mb-1">{item.name}</h5>
+                                                                <p className="mb-0">{item.price.toLocaleString()} VNĐ</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>)
+                                            })
+                                        }
+
+
+
+                                    </ul>
                                 </div>
-                                <div className="card-header-toolbar d-flex align-items-center">
-                                    <div className="dropdown">
-                                        <span class="dropdown-toggle dropdown-bg btn" id="dropdownMenuButton005"
-                                            data-toggle="dropdown">
-                                            This Month<i className="ri-arrow-down-s-line ml-1"></i>
-                                        </span>
-                                        <div className="dropdown-menu dropdown-menu-right shadow-none"
-                                            aria-labelledby="dropdownMenuButton005">
-                                            <a class="dropdown-item" href="#">Year</a>
-                                            <a class="dropdown-item" href="#">Month</a>
-                                            <a class="dropdown-item" href="#">Week</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="card-body">
-                                <div className="d-flex flex-wrap align-items-center mt-2">
-                                    <div className="d-flex align-items-center progress-order-left">
-                                        <div className="progress progress-round m-0 orange conversation-bar"
-                                            data-percent="46">
-                                            <span className="progress-left">
-                                                <span className="progress-bar"></span>
-                                            </span>
-                                            <span className="progress-right">
-                                                <span className="progress-bar"></span>
-                                            </span>
-                                            <div className="progress-value text-secondary">46%</div>
-                                        </div>
-                                        <div className="progress-value ml-3 pr-5 border-right">
-                                            <h5>$12,6598</h5>
-                                            <p className="mb-0">Average Orders</p>
-                                        </div>
-                                    </div>
-                                    <div className="d-flex align-items-center ml-5 progress-order-right">
-                                        <div className="progress progress-round m-0 primary conversation-bar"
-                                            data-percent="46">
-                                            <span className="progress-left">
-                                                <span className="progress-bar"></span>
-                                            </span>
-                                            <span className="progress-right">
-                                                <span className="progress-bar"></span>
-                                            </span>
-                                            <div className="progress-value text-primary">46%</div>
-                                        </div>
-                                        <div className="progress-value ml-3">
-                                            <h5>$59,8478</h5>
-                                            <p className="mb-0">Top Orders</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="card-body pt-0">
-                                <div id="layout1-chart-5"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </>
     )
 }
